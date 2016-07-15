@@ -17,8 +17,19 @@
     <%= f.label :content %><br>
     <%= f.text_area :content %>
   </div>
-  <div class="field">
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+
+
+
+<%= f.fields_for :tag_ids do |tag|%>
+<div class="field">
+  <h5>Choose a tag(optional)</h5>
+  <%= tag.collection_check_boxes :ids, Tag.all, :id, :name %>
+  <h5>Create a new tag(optional)</h5>
+    <%= tag.fields_for :new_tag, Tag.new do |u| %>
+      <%= u.label "Tag"%>
+      <%= u.text_field :name %>
+      <%end %>
+      <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -4,4 +4,26 @@ class Post < ApplicationRecord
   has_many :tags, :through => :post_tags
 
   validates_presence_of :name, :content
+
+  def tag_ids=(attributes)
+
+    binding.pry
+
+      binding.pry
+      attributes[:ids].each do |tag|
+        if tag != ""
+        collection = Tag.find(tag)
+        self.tags << collection
+      end
+    end
+
+
+    if attributes[:new_tag][:name].present?
+      @tag = Tag.find_or_create_by(name: attributes[:new_tag][:name].downcase.strip)
+      self.tags << @tag
+    end
+
+    self.tags
+
+  end
 end
