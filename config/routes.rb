@@ -1,19 +1,9 @@
 Rails.application.routes.draw do
-  get 'posts/index'
 
-  get 'posts/new'
-
-  get 'posts/create'
-
-  get 'posts/edit'
-
-  get 'posts/update'
-
-  get 'posts/show'
-
-  get 'posts/destroy--no-test-framework'
 
   devise_for :users
+  resources :users
+  resources :posts
 
 
   root 'home#index'

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  class PostsController < ApplicationController
+
     before_action :set_post, only: [:show, :edit, :update, :destroy]
 
     # GET /posts
@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     def index
 
       @posts = Post.all
+
       respond_to do |f|
         f.html { render :index }
         f.json { render json: @posts }
@@ -16,6 +17,7 @@ class PostsController < ApplicationController
     # GET /posts/1
     # GET /posts/1.json
     def show
+
       @comment = Comment.new
       respond_to do |f|
         f.html { render :show }
@@ -82,6 +84,6 @@ class PostsController < ApplicationController
       def post_params
         params.require(:post).permit(:name, :content, :tag_ids => [])
       end
-  end
+
 
 end
