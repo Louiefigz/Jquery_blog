@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+function attachListeners(){
+  $('#tag-listener').click(function(e){
+    debugger;
+  });
+}
+
+$(function(){
+  attachListeners();
+});
