@@ -7,9 +7,6 @@ class Post < ApplicationRecord
 
   def tag_ids=(attributes)
 
-    binding.pry
-
-      binding.pry
       attributes[:ids].each do |tag|
         if tag != ""
         collection = Tag.find(tag)

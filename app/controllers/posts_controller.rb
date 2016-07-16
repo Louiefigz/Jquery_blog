@@ -39,6 +39,7 @@ class PostsController < ApplicationController
     # POST /posts
     # POST /posts.json
     def create
+      binding.pry
 
       @post = Post.new(post_params)
       respond_to do |format|
@@ -55,7 +56,7 @@ class PostsController < ApplicationController
     # PATCH/PUT /posts/1
     # PATCH/PUT /posts/1.json
     def update
-      binding.pry 
+      binding.pry
       respond_to do |format|
         if @post.update(post_params)
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -85,7 +86,7 @@ class PostsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
-        params.require(:post).permit(:name, :content, :tag_ids=>[:ids=>[], :new_tag=>[:name]])
+        params.require(:post).permit(:name, :content, :tag_ids =>[:ids=>[], :new_tag=>[:name]])
       end
 
 
