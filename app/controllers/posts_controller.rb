@@ -64,13 +64,14 @@ class PostsController < ApplicationController
     def update
       respond_to do |format|
         # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
+        binding.pry
         if @post.update(post_params)
 
           if params[:post][:new_tag][:tag][:name] != ''
             new_tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name].downcase.strip)
             @post.tags << new_tag
           end
-          # @post.new_tag
+
 
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
           format.json { head :no_content }
@@ -99,7 +100,7 @@ class PostsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
-        params.require(:post).permit(:name, :content, :tag_ids=>[])
+        params.require(:post).permit(:name, :content, tag_attributes:[tag_ids:[], :tag_name])
       end
 
       def new_tag_params

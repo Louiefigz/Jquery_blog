@@ -5,11 +5,23 @@ class Post < ApplicationRecord
 
   validates_presence_of :name, :content
 
+  # accepts_nested_attributes_for :tag_ids
 
 
-def new_tag=(attributes) 
-  binding.pry
+def tag_attributes=(attributes)
+binding.pry
 end
+
+
+# def tag_ids=()
+#   binding.pry
+# end
+# #
+# def new_tag=(attributes)
+#   binding.pry
+# end
+
+
   # def tag_ids=(attributes)
   #
   #     attributes[:ids].each do |tag|
