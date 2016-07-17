@@ -43,6 +43,11 @@ class PostsController < ApplicationController
 
 
       @post = Post.new(post_params)
+      if params[:post][:new_tag][:tag][:name] != ''
+        new_tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name].downcase.strip)
+        @post.tags << new_tag
+      end
+
       respond_to do |format|
         if @post.save
           format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -57,11 +62,14 @@ class PostsController < ApplicationController
     # PATCH/PUT /posts/1
     # PATCH/PUT /posts/1.json
     def update
-      binding.pry
       respond_to do |format|
         # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
         if @post.update(post_params)
-          # binding.pry
+
+          if params[:post][:new_tag][:tag][:name] != ''
+            new_tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name].downcase.strip)
+            @post.tags << new_tag
+          end
           # @post.new_tag
 
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -95,7 +103,7 @@ class PostsController < ApplicationController
       end
 
       def new_tag_params
-        params.require(:post).permit(:new_tag[:tag][:name])
+        params.require(:post).permit(:new_tag=>[:tag][:name])
       end
 
 end
