@@ -34,12 +34,13 @@ class PostsController < ApplicationController
 
     # GET /posts/1/edit
     def edit
+      @tag= @post.tags.build
     end
 
     # POST /posts
     # POST /posts.json
     def create
-      binding.pry
+
 
       @post = Post.new(post_params)
       respond_to do |format|
@@ -58,7 +59,11 @@ class PostsController < ApplicationController
     def update
       binding.pry
       respond_to do |format|
+        # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
         if @post.update(post_params)
+          # binding.pry
+          # @post.new_tag
+
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
           format.json { head :no_content }
         else
@@ -86,8 +91,11 @@ class PostsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
-        params.require(:post).permit(:name, :content, :tag_ids =>[:ids=>[], :new_tag=>[:name]])
+        params.require(:post).permit(:name, :content, :tag_ids=>[])
       end
 
+      def new_tag_params
+        params.require(:post).permit(:new_tag[:tag][:name])
+      end
 
 end

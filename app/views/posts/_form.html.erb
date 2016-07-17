@@ -20,16 +20,17 @@
 
 
 
-<%= f.fields_for :tag_ids do |tag|%>
-<div class="field">
   <h5>Choose a tag(optional)</h5>
-  <%= tag.collection_check_boxes :ids, Tag.all, :id, :name %>
+  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+
+<%= f.fields_for :new_tag, @tag do |u| %>
+<div class="field">
   <h5>Create a new tag(optional)</h5>
-    <%= tag.fields_for :new_tag, Tag.new do |u| %>
-      <%= u.label "Tag"%>
-      <%= u.text_field :name %>
+    <%= u.fields_for :tag do |n| %>
+      <%= n.label "Tag"%>
+      <%= n.text_field :name %>
       <%end %>
-      <% end %>
+<% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

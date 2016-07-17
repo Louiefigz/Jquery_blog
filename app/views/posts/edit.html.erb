@@ -1,42 +1,6 @@
-<h1>Editing post</h1>
+ <h1>Editing post</h1>
+<%= render "form"%>
 
-<%= form_for @post, as: :post, url: post_path(@post), method: :patch do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-
-
-
-  <h5>Choose a tag(optional)</h5>
-  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-<%= f.fields_for :tag_ids do |tag|%>
-<div class="field">
-  <h5>Create a new tag(optional)</h5>
-    <%= tag.fields_for :new_tag, Tag.new do |u| %>
-      <%= u.label "Tag"%>
-      <%= u.text_field :name %>
-      <%end %>
-      <% end %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
