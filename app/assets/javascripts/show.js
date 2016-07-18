@@ -32,9 +32,7 @@ function attachListeners(){
 
 
   $('#create-tag').submit(function(e){
-
-    e.preventDefault();
-
+    // e.preventDefault();
     $.ajax({
       url: "/posts/1/create_tag",
       method: "POST",
@@ -42,28 +40,51 @@ function attachListeners(){
         name: $('#new-tag').val()
       }
     });
-
+    console.log("ajax ready");
+    getLastTag();
   });
+
+
 
 }
 
 
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
+
     showTags(response.post.tags)
+  })
+}
+
+var getLastTag = function(){
+  $.getJson(path).done(function(response){
+debugger;
+  var dom = $();
+    showTag(response.post.tags[response.post.tags.length -1])
+    console.log(dom)
+
+    $('#tags').html(dom);
   })
 }
 
 
 var showTag = function(tag) {
-  return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
+  // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
+  var tag =
+    '<li data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
+       tag.name +
+      '<button class="delete_class">Delete Tag</button>' +
+    '</li>';
+
+  return tag;
 }
 
+
 var showTags = function(tags) {
-  var dom = $()
+  var dom = "";
   tags.forEach(function(tag) {
-    dom = dom.add(showTag(tag));
-  })
+    dom += showTag(tag);
+  });
   $("#tags").html(dom);
 }
 //
