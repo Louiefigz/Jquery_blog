@@ -89,8 +89,13 @@ class PostsController < ApplicationController
       end
     end
 
-    def createtag
-      binding.pry
+    def create_tag
+      # binding.pry
+      if params[:name] != ''
+      tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
+      post = Post.find(params[:id])
+      post.tags << tag
+    end 
     end
 
     private
@@ -102,6 +107,10 @@ class PostsController < ApplicationController
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
         params.require(:post).permit(:name, :content, :tag_ids => [], tag_attributes: [:name])
+      end
+
+      def tag_params
+        params.permit(:name, :id)
       end
 
 end

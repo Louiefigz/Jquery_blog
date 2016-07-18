@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
 
-  post '/posts/:id/createtag', to: 'post#createtag', as:"create_tag"
+  post '/posts/:id/create_tag', to: 'posts#create_tag', as:"create_tag"
 
 
   root 'home#index'
