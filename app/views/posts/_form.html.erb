@@ -18,15 +18,14 @@
     <%= f.text_area :content %>
   </div>
 
-
-<%= f.fields_for :tag do |u|%>
   <h5>Choose a tag(optional)</h5>
-  <%= u.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+<%= f.fields_for :tag do |u|%>
 
   <h5>Create a new tag(optional)</h5>
 
       <%= u.label "tag name"%>
-      <%= u.text_field :tag_name %>
+      <%= u.text_field :name %>
 
   <% end %>
 

@@ -7,37 +7,21 @@ class Post < ApplicationRecord
 
   # accepts_nested_attributes_for :tag_ids
 
-
-def tag_attributes=(attributes)
-binding.pry
+def tag
+  Tag.new
 end
 
 
-# def tag_ids=()
-#   binding.pry
-# end
-# #
-# def new_tag=(attributes)
-#   binding.pry
-# end
+def tag_attributes=(attributes)
+  if attributes['name'] != ''
+    tag = self.tags.find_by(name: attributes["name"].strip)
+    if tag.nil?
+      self.tags.build(attributes)
+    end
+  end
+  tag
+
+end
 
 
-  # def tag_ids=(attributes)
-  #
-  #     attributes[:ids].each do |tag|
-  #       if tag != ""
-  #       collection = Tag.find(tag)
-  #       self.tags << collection
-  #     end
-  #   end
-  #
-  #
-  #   if attributes[:new_tag][:name].present?
-  #     @tag = Tag.find_or_create_by(name: attributes[:new_tag][:name].downcase.strip)
-  #     self.tags << @tag
-  #   end
-  #
-  #   self.tags
-  #
-  # end
 end

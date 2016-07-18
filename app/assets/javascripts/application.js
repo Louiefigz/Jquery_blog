@@ -16,17 +16,17 @@
 //= require_tree .
 
 
-function attachListeners(){
-  $('#tag-listener').click(function(e){
-    debugger;
-    // assign data to a variable that you want to save - serialize()
-    $.get("/post_tags", function( data ) {
-      // Dispay to the DOM
-      $( ".result" ).html( data );
-      alert( "Load was performed." );
-    });
-  });
-}
+// function attachListeners(){
+//   $('#tag-listener').click(function(e){
+//     debugger;
+//     // assign data to a variable that you want to save - serialize()
+//     $.get("/post_tags", function( data ) {
+//       // Dispay to the DOM
+//       $( ".result" ).html( data );
+//       alert( "Load was performed." );
+//     });
+//   });
+// }
 
 // $('#browse-plan-table').on('submit', '#comment-form', function(e){
 //     e.preventDefault();
@@ -50,6 +50,6 @@ function attachListeners(){
 //     });
 //   });
 
-$(function(){
-  attachListeners();
-});
+// $(function(){
+//   attachListeners();
+// });
