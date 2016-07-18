@@ -56,7 +56,7 @@ var getAllTags = function() {
 
 
 var showTag = function(tag) {
-  return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name});
+  return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
 }
 
 var showTags = function(tags) {
