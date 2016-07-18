@@ -6,11 +6,21 @@
   <h3>Content:</h3>
   <%= @post.content %><br><br>
   <button id="tag-listener">Tags:</button>
-  <ul>
+  <button id="remove-tag">Hide Tags:</button>
+  <div id='tags'></div>
+
+<form id="create-tag">
+  <input type="text" placeholder="create a tag here" id="new-tag">
+  <input type="submit" value="create">
+</form>
+
+  <!-- <button id="create-tag">Create New Tag:</button> -->
+
+  <!-- <ul>
     <% @post.tags.each do |tag| %>
     <li><%= tag.name %></li>
     <% end %>
-  </ul>
+  </ul> -->
 </p>
 
 

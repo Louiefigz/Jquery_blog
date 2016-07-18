@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
 
       @post = Post.new(post_params)
-    
+
 
       respond_to do |format|
         if @post.save
@@ -87,6 +87,10 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_url }
         format.json { head :no_content }
       end
+    end
+
+    def createtag
+      binding.pry
     end
 
     private
