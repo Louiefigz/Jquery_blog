@@ -71,9 +71,9 @@ debugger;
 var showTag = function(tag) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var tag =
-    '<li data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
+    ' <li data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
        tag.name +
-      '<button class="delete_class">Delete Tag</button>' +
+      '  <button class="delete_class">Delete Tag</button>' +
     '</li>';
 
   return tag;
