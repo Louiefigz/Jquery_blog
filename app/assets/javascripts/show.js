@@ -70,8 +70,9 @@ var getAllTags = function() {
 
 function deleteTag(){
 $(".delete_class").click(function(e){
-  debugger;
 
+var id = $(this).attr('data-tag-id');
+$('#listed-tag-'+id ).hide();
 
     $.ajax({
       url: path + '/delete_tag',
@@ -81,6 +82,7 @@ $(".delete_class").click(function(e){
       }
     })
   })
+
 
 }
 
@@ -101,9 +103,9 @@ $(".delete_class").click(function(e){
 var showTag = function(tag) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var tag =
-    ' <li id="listed-tag" data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
+    ' <li id="listed-tag-'+tag.id+'" data-name=" ' + tag.name+ ' " data-tag-id="'+tag.id+'">' +
        tag.name +
-      '<button class="delete_class" data-tag-id=" '+ tag.id + ' ">Remove</button>' +
+      '<button class="delete_class" data-tag-id="'+tag.id+'">Remove</button>' +
     '</li>';
 
   return tag;
