@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/posts/:id/create_tag', to: 'posts#create_tag', as:"create_tag"
 
 
-  root 'home#index'
+
+  root 'posts#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
