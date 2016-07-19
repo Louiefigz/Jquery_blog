@@ -83,8 +83,9 @@ class PostsController < ApplicationController
     # DELETE /posts/1.json
 
     def delete_tag
-      binding.pry
-
+      
+       posttag = PostTag.find_by(tag_id: params[:tag_id].to_i, post_id: params[:id].to_i)
+       posttag.destroy
     end
 
     def destroy
@@ -96,7 +97,7 @@ class PostsController < ApplicationController
     end
 
     def create_tag
-      # binding.pry
+
       if params[:name] != ''
       tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
       post = Post.find(params[:id])

@@ -20,7 +20,7 @@ function attachListeners(){
     $('#tag-listener').hide();
     $('#remove-tag').show();
     $('#create-tag').show();
-    debugger;
+
   })
 
   $('#remove-tag').click(function(){
@@ -35,54 +35,73 @@ function attachListeners(){
   $('#create-tag').submit(function(e){
     // e.preventDefault();
     $.ajax({
-      url: "/posts/1/create_tag",
+      url: path + "/create_tag",
       method: "POST",
       data: {
         name: $('#new-tag').val()
       }
     });
-    console.log("ajax ready");
-    getLastTag();
   });
-  // debugger;
-deleteTag();
 
-}
+  $('#posts').click(function(){
+
+    $.getJSON(path).done(function(response){
+      debugger;
 
 
-
-function deleteTag(){
-  $("#delete_class").click(function(){
-    // debugger;
-    $.ajax({
-      url: path,
-      method: "DELETE",
-      data:{
-        name: tag
-      }
     })
-
   })
-}
+
+
+
+
+
+  };
+  // debugger;
+
+
+
+
 
 
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
 
     showTags(response.post.tags)
+    deleteTag()
+
+
   })
 }
 
-var getLastTag = function(){
-  $.getJson(path).done(function(response){
-debugger;
-  var dom = $();
-    showTag(response.post.tags[response.post.tags.length -1])
-    console.log(dom)
+function deleteTag(){
+$(".delete_class").click(function(e){
+  debugger;
 
-    $('#tags').html(dom);
+
+    $.ajax({
+      url: path + '/delete_tag',
+      method: "DELETE",
+      data:{
+        tag_id: $(this).attr("data-tag-id")
+      }
+    })
   })
+
 }
+
+
+// $('#listed-tag').attr('data-tag-id') == $(this).attr("data-tag-id")
+
+// var getLastTag = function(){
+//   $.getJson(path).done(function(response){
+//
+//   var dom = $();
+//     dom = dom.add(showTag(response.post.tags[response.post.tags.length -1])
+//
+//     $('#tags').html(dom);
+//   })
+// }
 
 
 var showTag = function(tag) {
@@ -90,7 +109,7 @@ var showTag = function(tag) {
   var tag =
     ' <li id="listed-tag" data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
        tag.name +
-      '<button id="delete_class" data-tag-id=" '+ tag.id + ' ">Remove</button>' +
+      '<button class="delete_class" data-tag-id=" '+ tag.id + ' ">Remove</button>' +
     '</li>';
 
   return tag;
@@ -100,7 +119,7 @@ var showTag = function(tag) {
 var showTags = function(tags) {
   var dom = "";
   tags.forEach(function(tag) {
-    dom += showTag(tag);
+    dom += (showTag(tag));
   });
   $("#tags").html(dom);
 }
