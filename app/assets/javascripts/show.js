@@ -3,6 +3,7 @@ $('document').ready(function(){
   $('#remove-tag').hide();
   $('#create-tag').hide();
   attachListeners();
+  indexListeners();
 
 })
 
@@ -43,14 +44,7 @@ function attachListeners(){
     });
   });
 
-  $('#posts').click(function(){
 
-    $.getJSON(path).done(function(response){
-      debugger;
-
-
-    })
-  })
 
 
 

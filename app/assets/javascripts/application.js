@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require show
+//= require index
+
 //= require_tree .
 
 
