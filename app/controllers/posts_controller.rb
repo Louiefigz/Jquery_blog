@@ -81,6 +81,11 @@ class PostsController < ApplicationController
 
     # DELETE /posts/1
     # DELETE /posts/1.json
+
+    def delete_tag
+
+    end
+
     def destroy
       @post.destroy
       respond_to do |format|
@@ -95,7 +100,7 @@ class PostsController < ApplicationController
       tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
       post = Post.find(params[:id])
       post.tags << tag
-    end 
+    end
     end
 
     private

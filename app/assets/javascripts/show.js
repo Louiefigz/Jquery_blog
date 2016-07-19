@@ -44,6 +44,18 @@ function attachListeners(){
     getLastTag();
   });
 
+  $('.delete_class').click(function(){
+    debugger;
+    $.ajax({
+      url: path,
+      method: "DELETE"
+      data:{
+        name: tag
+      }
+    })
+
+  })
+
 
 
 }
@@ -71,9 +83,9 @@ debugger;
 var showTag = function(tag) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var tag =
-    ' <li data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
+    ' <li id="listed-tag" data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
        tag.name +
-      '  <button class="delete_class">Delete Tag</button>' +
+      '<button class="delete_class" data-tag-id=" '+ tag.id + ' ">Remove</button>' +
     '</li>';
 
   return tag;
