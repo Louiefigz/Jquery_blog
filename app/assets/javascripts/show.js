@@ -20,6 +20,7 @@ function attachListeners(){
     $('#tag-listener').hide();
     $('#remove-tag').show();
     $('#create-tag').show();
+    debugger;
   })
 
   $('#remove-tag').click(function(){
@@ -43,21 +44,25 @@ function attachListeners(){
     console.log("ajax ready");
     getLastTag();
   });
+  // debugger;
+deleteTag();
 
-  $('.delete_class').click(function(){
-    debugger;
+}
+
+
+
+function deleteTag(){
+  $("#delete_class").click(function(){
+    // debugger;
     $.ajax({
       url: path,
-      method: "DELETE"
+      method: "DELETE",
       data:{
         name: tag
       }
     })
 
   })
-
-
-
 }
 
 
@@ -85,7 +90,7 @@ var showTag = function(tag) {
   var tag =
     ' <li id="listed-tag" data-name=" ' + tag.name+ ' " data-tag-id=" ' + tag.id + ' ">' +
        tag.name +
-      '<button class="delete_class" data-tag-id=" '+ tag.id + ' ">Remove</button>' +
+      '<button id="delete_class" data-tag-id=" '+ tag.id + ' ">Remove</button>' +
     '</li>';
 
   return tag;

@@ -83,6 +83,7 @@ class PostsController < ApplicationController
     # DELETE /posts/1.json
 
     def delete_tag
+      binding.pry
 
     end
 
