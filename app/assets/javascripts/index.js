@@ -3,26 +3,25 @@ function indexListeners(){
 
 
 
-$('#posts').click(function(){
+// $('#posts').click(function(){
 
   $.getJSON(path).done(function(response){
-
     showPosts(response.posts)
-    getPost()
+    // getPost()
   })
-})
+// })
 
 }
 
-
-function getPost(){
-  $('.post-listener').click(function(){
-    debugger;
-
-
-  })
-
-}
+//
+// function getPost(){
+//   $('.post-listener').click(function(){
+//     debugger;
+//
+//
+//   })
+//
+// }
 
 
 var showPosts = function(posts) {
@@ -36,10 +35,10 @@ var showPosts = function(posts) {
 var showPost = function(post) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post =
-  '<li id="listed-post" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+  '<tr>'+'<td class="post-listener" id="listed-post-'+post.id+'" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
   '<a href="#" class="post-listener" data-post-id=" '+post.id+ ' ">' + post.name + '</a>' +
 
-  '</li>';
+  '</td>'+'<tr>';
 
   return post;
 }

@@ -96,11 +96,10 @@ class PostsController < ApplicationController
       end
     end
 
-    def create_tag
-
+    def create_tag  
       if params[:name] != ''
-      tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
-      post = Post.find(params[:id])
+        tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
+        post = Post.find(params[:id])
       if !post.tags.include?(tag)
         post.tags << tag
       end
