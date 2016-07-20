@@ -35,43 +35,35 @@ function attachListeners(){
 
 
   $('#create-tag').submit(function(e){
-    // e.preventDefault();
-    // debugger;
-    // $( "#remove-tag" ).trigger( "click" );
-    // $( "#tag-listener" ).trigger( "click" );
+  
     $.ajax({
       url: path + "/create_tag",
       method: "POST",
       data: {
         name: $('#new-tag').val()
       }
+    }).done(function(){
+      appendTag()
     });
     e.preventDefault();
-
-      $.getJSON(path).done(function(response) {
-        // showTags(response.post.tags)
-        debugger;
-        new_tag = showTag(response.post.tags[response.post.tags.length-1])
-        $('#tags').append(new_tag)
-        $('#new-tag').val('');
-        deleteTag()
-
-
-      })
-
-
-
-
   });
-
-
-
-
-
-
 
   };
   // debugger;
+
+
+
+  function appendTag(){
+    $.getJSON(path).done(function(response) {
+      // showTags(response.post.tags)
+
+      new_tag = showTag(response.post.tags[response.post.tags.length-1])
+      $('#tags').append(new_tag)
+      $('#new-tag').val('');
+      deleteTag()
+    })
+  }
+
 
 
 
