@@ -26,8 +26,17 @@
 
 <h4>Click on a post below!</h4>
 <div id="showPosts"></div>
+<div id="showPost"></div>
 
 
-<button id="new-post-form">New Post</button><br>
+<br><br><button id="new-post-form">Create a new Post</button><br>
+<div>
+  <form id="create-post">
+    <input type="text" placeholder="create a tag here" id="new-post">
+    <input type="text" placeholder="create a tag here" id="new-post">
+    <input type="submit" value="create">
+  </form>
+</div>
+
 
 <%= link_to 'New Post', new_post_path %>

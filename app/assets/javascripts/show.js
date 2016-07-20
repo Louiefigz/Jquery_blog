@@ -16,14 +16,13 @@ var newPost;
 
 function attachListeners(){
   $('#tag-listener').click(function(){
-
-
     getAllTags();
     $('#tag-listener').hide();
     $('#remove-tag').show();
     $('#create-tag').show();
-
   })
+
+
 
   $('#remove-tag').click(function(){
 
@@ -101,19 +100,6 @@ $('#listed-tag-'+id ).hide();
 }
 
 
-// $('#listed-tag').attr('data-tag-id') == $(this).attr("data-tag-id")
-
-// var getLastTag = function(){
-//   $.getJson(path).done(function(response){
-//
-//   var dom = $();
-//     dom = dom.add(showTag(response.post.tags[response.post.tags.length -1])
-//
-//     $('#tags').html(dom);
-//   })
-// }
-
-
 var showTag = function(tag) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var tag =
@@ -133,31 +119,8 @@ var showTags = function(tags) {
   });
   $("#tags").html(dom);
 }
-//
-// function updatePost(position){
-//   var state = [];
-//     // $(position).text(player());
-//     debugger;
-//     $('#tags').each(function(index, cell){
-//
-//       state.push($(cell).text());
-//     });
-//     newPost = state;
-// };
 
 
 function postData(){
   return {"post":{"tags": newPost}};
 }
-
-
-
-//
-// function savePost(callback){
-//
-//   $.ajax({
-//     url: path,
-//     method: "PATCH",
-//     data: postData()
-//   });
-// }
