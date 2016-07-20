@@ -1,12 +1,9 @@
 
 function indexListeners(){
 
+  $('#create-post').hide();
 
   $('#create-post').submit(function(){
-
-
-
-
     $.ajax({
       url: "/posts",
       method: "POST",
@@ -19,6 +16,13 @@ function indexListeners(){
       }
     });
   });
+
+$('#new-post-form').click(function(){
+  $('#create-post').show();
+  $('#new-post-form').hide();
+
+})
+
 
 }
 
