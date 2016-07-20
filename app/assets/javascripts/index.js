@@ -14,22 +14,46 @@ function indexListeners(){
           "tag": $('#tag-name').val()
         }
       }
-    });
+    }).done(function(){
+      appendPost()
+    })
+    e.preventDefault();
   });
 
-$('#new-post-form').click(function(){
-  $('#create-post').show();
-  $('#new-post-form').hide();
+  $('#new-post-form').click(function(){
+    $('#create-post').show();
+    $('#new-post-form').hide();
+  })
 
+$('#showPostsBttn').click(function(){
+  $('#showPostsBttn').hide()
+  getAllPosts();
+  $('.post-listener').click(function(){
+    debugger;
+  })
 })
-
 
 }
 
+function appendPost(){
+  $.getJSON("/posts").done(function(response) {
+    debugger;
+    // showTags(response.post.tags)
+if ($('#post-name').val() != '') {
+    new_post = showPost(response.posts[response.posts.length-1])
+    $('#showPosts').append(new_post)
+    $('#create-post input[type=text]').val('');
+    $('#create-post textarea').val('');
+    deleteTag()
+  }
+  })
+}
+
+function getAllPosts(){
 $.getJSON(path).done(function(response){
   showPosts(response.posts)
 });
-
+}
 
 
 var showPosts = function(posts) {
@@ -43,10 +67,17 @@ var showPosts = function(posts) {
 var showPost = function(post) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post =
-  '<button id="post-listener" class="listed-post-'+post.id+'" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
-   post.name +
+  '<tr>'+
+  '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+   post.name +'</td>'+
+  //  console.log(post.id);
+   '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show" +'</td>'+
 
-  '</button>'+'<br>';
+
+
+  '</tr>' +
+
+  '<br>';
 
   return post;
 }
