@@ -3,7 +3,7 @@ function indexListeners(){
 
   $('#create-post').hide();
 
-  $('#create-post').submit(function(){
+  $('#create-post').submit(function(e){
     $.ajax({
       url: "/posts",
       method: "POST",
@@ -16,8 +16,9 @@ function indexListeners(){
       }
     }).done(function(){
       appendPost()
-    })
+    });
     e.preventDefault();
+    console.log("prevent that default ");
   });
 
   $('#new-post-form').click(function(){
@@ -36,16 +37,18 @@ $('#showPostsBttn').click(function(){
 }
 
 function appendPost(){
+
   $.getJSON("/posts").done(function(response) {
-    debugger;
     // showTags(response.post.tags)
-if ($('#post-name').val() != '') {
+    debugger;
+
     new_post = showPost(response.posts[response.posts.length-1])
     $('#showPosts').append(new_post)
     $('#create-post input[type=text]').val('');
     $('#create-post textarea').val('');
-    deleteTag()
-  }
+    $('#create-post').hide();
+    // deleteTag()
+
   })
 }
 

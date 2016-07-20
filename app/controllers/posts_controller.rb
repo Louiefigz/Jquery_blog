@@ -50,7 +50,7 @@ class PostsController < ApplicationController
             tag = Tag.find_or_create_by(name: params[:post][:tag].downcase.strip)
             @post.tags << tag
           end
-          format.html { redirect_to @post, notice: 'Post was successfully created.' }
+          format.html { redirect_to :back, notice: 'Post was successfully created.' }
           format.json { render action: 'show', status: :created, location: @post }
         else
           format.html { render action: 'new' }
