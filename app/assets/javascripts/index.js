@@ -2,16 +2,23 @@
 function indexListeners(){
 
 
-$('#create-post').submit(function(){
-  debugger;
-
-});
+  $('#create-post').submit(function(){
 
 
-  // $('#new-post-form').submit(function(){
-  //   debugger;
-  // })
 
+
+    $.ajax({
+      url: "/posts",
+      method: "POST",
+      data: {
+        "post":{
+          "name": $('#post-name').val(),
+          "content": $('#post-content').val(),
+          "tag": $('#tag-name').val()
+        }
+      }
+    });
+  });
 
 }
 

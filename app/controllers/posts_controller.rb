@@ -41,12 +41,15 @@ class PostsController < ApplicationController
     # POST /posts.json
     def create
 
-
+      # binding.pry
       @post = Post.new(post_params)
-
 
       respond_to do |format|
         if @post.save
+          if params[:post][:tag] != ""
+            tag = Tag.find_or_create_by(name: params[:post][:tag].downcase.strip)
+            @post.tags << tag
+          end
           format.html { redirect_to @post, notice: 'Post was successfully created.' }
           format.json { render action: 'show', status: :created, location: @post }
         else
@@ -96,7 +99,7 @@ class PostsController < ApplicationController
       end
     end
 
-    def create_tag  
+    def create_tag
       if params[:name] != ''
         tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
         post = Post.find(params[:id])
