@@ -17,6 +17,7 @@ var newPost;
 function attachListeners(){
   $('#tag-listener').click(function(){
 
+
     getAllTags();
     $('#tag-listener').hide();
     $('#remove-tag').show();
@@ -35,6 +36,9 @@ function attachListeners(){
 
   $('#create-tag').submit(function(e){
     // e.preventDefault();
+    // debugger;
+    // $( "#remove-tag" ).trigger( "click" );
+    // $( "#tag-listener" ).trigger( "click" );
     $.ajax({
       url: path + "/create_tag",
       method: "POST",
@@ -42,6 +46,22 @@ function attachListeners(){
         name: $('#new-tag').val()
       }
     });
+    e.preventDefault();
+
+      $.getJSON(path).done(function(response) {
+        // showTags(response.post.tags)
+        debugger;
+        new_tag = showTag(response.post.tags[response.post.tags.length-1])
+        $('#tags').append(new_tag)
+        $('#new-tag').val('');
+        deleteTag()
+
+
+      })
+
+
+
+
   });
 
 
@@ -60,7 +80,6 @@ function attachListeners(){
 
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
-
     showTags(response.post.tags)
     deleteTag()
 
