@@ -2,19 +2,22 @@
 function indexListeners(){
 
 
+$('#create-post').submit(function(){
+  debugger;
+
+});
 
 
-  $.getJSON(path).done(function(response){
-    showPosts(response.posts)
-  });
-
-  $('#new-post-form').click(function(){
-    debugger;
-  })
+  // $('#new-post-form').submit(function(){
+  //   debugger;
+  // })
 
 
 }
 
+$.getJSON(path).done(function(response){
+  showPosts(response.posts)
+});
 
 
 
