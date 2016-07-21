@@ -62,8 +62,6 @@ function attachListeners(){
     $('#create-post').hide();
 
     $('#create-post').submit(function(){
-      getId()
-
 
       $.ajax({
         url: "/posts",
@@ -76,21 +74,13 @@ function attachListeners(){
           }
         }
       }).done(function(){
-        console.log("created that post?");
-        reloadPost()
+        reloadPost();
       });
 
     });
 
 
     };
-    var userId;
-
-    function getId(){
-      $.getJSON("/posts").done(function(response){
-        debugger;
-      })
-    }
 
 
 
