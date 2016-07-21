@@ -26,13 +26,15 @@ function indexListeners(){
     $('#new-post-form').hide();
   })
 
-$('#showPostsBttn').click(function(){
-  $('#showPostsBttn').hide()
-  getAllPosts();
-  $('.post-listener').click(function(){
-    debugger;
-  })
-})
+// $('#showPostsBttn').click(function(){
+//   $('#showPostsBttn').hide()
+//   getAllPosts();
+//   $('.post-listener').click(function(){
+//     debugger;
+//   })
+// })
+
+getAllPosts()
 
 }
 
@@ -74,8 +76,9 @@ var showPost = function(post) {
   '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
    post.name +'</td>'+
   //  console.log(post.id);
-  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show" +'</td>'+
-   '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + "Edit" +'</td>'+
+  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " +' </td>'+
+  '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
+   '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
 
 
 
