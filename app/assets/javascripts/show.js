@@ -1,4 +1,4 @@
-$('document').ready(function(){
+$(function(){
 
   $('#remove-tag').hide();
   $('#create-tag').hide();

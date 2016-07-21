@@ -74,7 +74,8 @@ var showPost = function(post) {
   '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
    post.name +'</td>'+
   //  console.log(post.id);
-   '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show" +'</td>'+
+  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show" +'</td>'+
+   '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + "Edit" +'</td>'+
 
 
 
