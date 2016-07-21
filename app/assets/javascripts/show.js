@@ -3,7 +3,8 @@ $(function(){
   $('#remove-tag').hide();
   $('#create-tag').hide();
   attachListeners();
-  indexListeners();
+
+  getAllPosts()
 
 })
 
@@ -48,9 +49,35 @@ function attachListeners(){
       e.preventDefault();
     });
 
+
+///////Index page listeners////////
+
+    $('#create-post').hide();
+
+    $('#create-post').submit(function(e){
+      $.ajax({
+        url: "/posts",
+        method: "POST",
+        data: {
+          "post":{
+            "name": $('#post-name').val(),
+            "content": $('#post-content').val(),
+            "tag": $('#tag-name').val()
+          }
+        }
+      }).done(function(){
+        reloadPost()
+      });
+
+    });
+
+    $('#new-post-form').click(function(){
+      $('#create-post').show();
+      $('#new-post-form').hide();
+    })
+
     };
 
-  // debugger;
 
 
 
@@ -131,30 +158,7 @@ function postData(){
 
 function indexListeners(){
 
-  $('#create-post').hide();
 
-  $('#create-post').submit(function(e){
-    $.ajax({
-      url: "/posts",
-      method: "POST",
-      data: {
-        "post":{
-          "name": $('#post-name').val(),
-          "content": $('#post-content').val(),
-          "tag": $('#tag-name').val()
-        }
-      }
-    }).done(function(){
-      appendPost()
-    });
-    e.preventDefault();
-    console.log("prevent that default ");
-  });
-
-  $('#new-post-form').click(function(){
-    $('#create-post').show();
-    $('#new-post-form').hide();
-  })
 
 // $('#showPostsBttn').click(function(){
 //   $('#showPostsBttn').hide()
@@ -164,24 +168,20 @@ function indexListeners(){
 //   })
 // })
 
-getAllPosts()
+
 
 }
 
-function appendPost(){
+function reloadPost(){
+  // debugger;
+  $.getJSON(path).done(function(response){
+    showPosts(response.posts)
 
-  $.getJSON("/posts").done(function(response) {
-    // showTags(response.post.tags)
-    debugger;
-
-    new_post = showPost(response.posts[response.posts.length-1])
-    $('#showPosts').append(new_post)
     $('#create-post input[type=text]').val('');
     $('#create-post textarea').val('');
     $('#create-post').hide();
     // deleteTag()
-
-  })
+  });
 }
 
 function getAllPosts(){
@@ -202,17 +202,18 @@ var showPosts = function(posts) {
 var showPost = function(post) {
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post =
+  '<table>'+
   '<tr>'+
   '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
    post.name +'</td>'+
   //  console.log(post.id);
-  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " +' </td>'+
+  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>'+
   '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
    '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
 
 
 
-  '</tr>' +
+  '</tr>' + '</table>'+
 
   '<br>';
 
