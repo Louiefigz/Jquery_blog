@@ -14,8 +14,7 @@ class PostsController < ApplicationController
       end
     end
 
-    # GET /posts/1
-    # GET /posts/1.json
+
     def show
 
       @comment = Comment.new
@@ -32,13 +31,11 @@ class PostsController < ApplicationController
       @tag = Tag.new
     end
 
-    # GET /posts/1/edit
     def edit
       @tag= @post.tags.build
     end
 
-    # POST /posts
-    # POST /posts.json
+
     def create
       @post = Post.new(post_params)
 
@@ -58,20 +55,12 @@ class PostsController < ApplicationController
       end
     end
 
-    # PATCH/PUT /posts/1
-    # PATCH/PUT /posts/1.json
+
     def update
       respond_to do |format|
         # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
 
         if @post.update(post_params)
-
-          # if params[:post][:new_tag][:tag][:name] != ''
-          #   new_tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name].downcase.strip)
-          #   @post.tags << new_tag
-          # end
-
-
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
           format.json { head :no_content }
         else

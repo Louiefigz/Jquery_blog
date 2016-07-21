@@ -1,36 +1,8 @@
 <h1>Listing posts</h1>
 
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.name %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> -->
-
-<br>
-
 <h4>Click on a post below!</h4>
-<!-- <button id="showPostsBttn">Show all posts</button> -->
 
 <div id="showPosts"></div>
-
-<!-- <div id="showPost"></div> -->
-
 
 <br><br><button id="new-post-form">Create a new Post</button><br>
 <div>
@@ -42,6 +14,3 @@
     <input type="submit" value="create">
   </form>
 </div>
-
-
-<!-- # <%= link_to 'New Post', new_post_path %> -->

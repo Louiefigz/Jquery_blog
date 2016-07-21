@@ -11,7 +11,7 @@ $(function(){
 var path = window.location.pathname;
 var postId;
 var newPost;
-// pathId = pathId[pathId.length -1]
+
 
 
 
@@ -26,9 +26,7 @@ function attachListeners(){
   })
 
 
-
   $('#remove-tag').click(function(){
-
     $('#tags li').remove();
     $('#remove-tag').hide();
     $('#tag-listener').show();
@@ -38,7 +36,6 @@ function attachListeners(){
 
 
     $('#create-tag').submit(function(e){
-
       $.ajax({
         url: path + "/create_tag",
         method: "POST",
@@ -149,11 +146,6 @@ var showTags = function(tags) {
 }
 
 
-// function postData(){
-//   return {"post":{"tags": newPost}};
-// }
-
-
 /////////////////////// INDEX.JS FILE ////////////////////////
 
 
@@ -195,9 +187,6 @@ var showPost = function(post) {
   '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>'+
   '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
    '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
-
-
-
   '</tr>' + '</table>'+
 
   '<br>';
