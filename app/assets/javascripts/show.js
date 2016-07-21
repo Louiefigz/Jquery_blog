@@ -54,7 +54,7 @@ function attachListeners(){
 
     $('#create-post').hide();
 
-    $('#create-post').submit(function(e){
+    $('#create-post').submit(function(){
       $.ajax({
         url: "/posts",
         method: "POST",
@@ -66,6 +66,7 @@ function attachListeners(){
           }
         }
       }).done(function(){
+        console.log("created that post?");
         reloadPost()
       });
 

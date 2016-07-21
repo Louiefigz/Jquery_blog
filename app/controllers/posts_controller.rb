@@ -41,11 +41,12 @@ class PostsController < ApplicationController
     # POST /posts.json
     def create
 
-      # binding.pry
+      binding.pry
       @post = Post.new(post_params)
 
       respond_to do |format|
         if @post.save
+          @post.update(user_id: current_user.id)  
           if params[:post][:tag] != ""
             tag = Tag.find_or_create_by(name: params[:post][:tag].downcase.strip)
             @post.tags << tag
@@ -117,7 +118,7 @@ class PostsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
-        params.require(:post).permit(:name, :content, :tag_ids => [], tag_attributes: [:name])
+        params.require(:post).permit(:name, :content ,:tag_ids => [], tag_attributes: [:name])
       end
 
       def tag_params
