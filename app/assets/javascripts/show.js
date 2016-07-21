@@ -16,6 +16,8 @@ var newPost;
 
 
 function attachListeners(){
+
+  //////////////  Show Page Listeners ////////////////
   $('#tag-listener').click(function(){
     getAllTags();
     $('#tag-listener').hide();
@@ -36,7 +38,7 @@ function attachListeners(){
 
 
     $('#create-tag').submit(function(e){
-        console.log(" aint gonna work bitch ");
+
       $.ajax({
         url: path + "/create_tag",
         method: "POST",
@@ -52,9 +54,17 @@ function attachListeners(){
 
 ///////Index page listeners////////
 
+  $('#new-post-form').click(function(){
+    $('#create-post').show();
+    $('#new-post-form').hide();
+  })
+
     $('#create-post').hide();
 
     $('#create-post').submit(function(){
+      getId()
+
+
       $.ajax({
         url: "/posts",
         method: "POST",
@@ -72,19 +82,24 @@ function attachListeners(){
 
     });
 
-    $('#new-post-form').click(function(){
-      $('#create-post').show();
-      $('#new-post-form').hide();
-    })
 
     };
+    var userId;
+
+    function getId(){
+      $.getJSON("/posts").done(function(response){
+        debugger;
+      })
+    }
 
 
 
+/////////////  Show Page functions ///////////
 
   function appendTag(){
     $.getJSON(path).done(function(response) {
       // showTags(response.post.tags)
+
 if ($('#new-tag').val() != '') {
       new_tag = showTag(response.post.tags[response.post.tags.length-1])
       $('#tags').append(new_tag)
@@ -93,11 +108,6 @@ if ($('#new-tag').val() != '') {
     }
     })
   }
-
-
-
-
-
 
 
 var getAllTags = function() {
@@ -149,32 +159,16 @@ var showTags = function(tags) {
 }
 
 
-function postData(){
-  return {"post":{"tags": newPost}};
-}
+// function postData(){
+//   return {"post":{"tags": newPost}};
+// }
 
 
 /////////////////////// INDEX.JS FILE ////////////////////////
 
 
-function indexListeners(){
-
-
-
-// $('#showPostsBttn').click(function(){
-//   $('#showPostsBttn').hide()
-//   getAllPosts();
-//   $('.post-listener').click(function(){
-//     debugger;
-//   })
-// })
-
-
-
-}
 
 function reloadPost(){
-  // debugger;
   $.getJSON(path).done(function(response){
     showPosts(response.posts)
 
@@ -220,11 +214,3 @@ var showPost = function(post) {
 
   return post;
 }
-
-
-
-//
-// ' <li id="listed-tag" data-name=" ' + post.name+ ' " data-tag-id=" ' + post.id + ' ">' +
-//    post.name +
-//   '<button class="delete_class" data-tag-id=" '+ post.id + ' ">Remove</button>' +
-// '</li>';

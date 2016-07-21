@@ -46,7 +46,7 @@ class PostsController < ApplicationController
 
       respond_to do |format|
         if @post.save
-          @post.update(user_id: current_user.id)  
+          @post.update(user_id: current_user.id)
           if params[:post][:tag] != ""
             tag = Tag.find_or_create_by(name: params[:post][:tag].downcase.strip)
             @post.tags << tag
