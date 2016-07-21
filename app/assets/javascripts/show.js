@@ -58,8 +58,7 @@ function attachListeners(){
 
     $('#create-post').hide();
 
-    $('#create-post').submit(function(){
-
+    $('#create-post').submit(function(e){
       $.ajax({
         url: "/posts",
         method: "POST",
@@ -73,7 +72,7 @@ function attachListeners(){
       }).done(function(){
         reloadPost();
       });
-
+      e.preventDefault()
     });
 
 
@@ -158,6 +157,7 @@ function reloadPost(){
     $('#create-post textarea').val('');
     $('#create-post').hide();
     // deleteTag()
+    $('#new-post-form').show();
   });
 }
 
