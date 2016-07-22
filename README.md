@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a very simple Blog Making Application which uses Dynamic Jquery to render, update and delete Posts and Tags without a page refresh. 
+This is a very simple Blog Making Application which uses Dynamic Jquery to render, update and delete Posts and Tags without a page refresh.
 
 ## Installation
 
@@ -11,9 +11,9 @@ This project may work with updated versions of Ruby and Rails however, I built t
 To get this project up and running,
 
 1. Clone Repository
-2. Run 'bundle install'
-3. 'rake db:migrate'
-4. 'rake db:seed' For testing in the local host, you may use rails s I have  sample accounts for testing. Take a look at the seed.rb file for username and passwords.
+2. Run `bundle install`
+3. `rake db:migrate`
+4. `rake db:seed` For testing in the local host, you may use rails s I have  sample accounts for testing. Take a look at the seed.rb file for username and passwords.
 
 ## Contributing
 
