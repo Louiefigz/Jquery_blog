@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
     before_action :set_post, only: [:show, :edit, :update, :destroy]
+    serialization_scope :view_context
 
     # GET /posts
     # GET /posts.json
