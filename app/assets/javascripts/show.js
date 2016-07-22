@@ -98,7 +98,9 @@ if ($('#new-tag').val() != '') {
 
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
+
     showTags(response.post.tags)
+
     deleteTag()
 
 
@@ -163,6 +165,7 @@ function reloadPost(){
 
 function getAllPosts(){
 $.getJSON(path).done(function(response){
+
   showPosts(response.posts)
 });
 }
@@ -171,25 +174,30 @@ $.getJSON(path).done(function(response){
 var showPosts = function(posts) {
   var dom = "";
   posts.forEach(function(post) {
-    dom += (showPost(post));
+
+    dom += (showPost(post, post.current_user_id));
   });
   $("#showPosts").html(dom);
 }
 
-var showPost = function(post) {
+var showPost = function(post, current_user_id) {
+
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
-  var post =
+  var post_td =
   '<table>'+
   '<tr>'+
   '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
    post.name +'</td>'+
   //  console.log(post.id);
-  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>'+
-  '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
-   '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
-  '</tr>' + '</table>'+
+  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>';
 
-  '<br>';
+  if (post.user.id == current_user_id) {
+    post_td +=
+      '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
+      '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
+  }
 
-  return post;
+  post_td += '</tr>' + '</table>' + '<br>';
+
+  return post_td;
 }
