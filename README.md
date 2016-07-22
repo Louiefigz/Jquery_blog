@@ -13,7 +13,9 @@ To get this project up and running,
 1. Clone Repository
 2. Run `bundle install`
 3. `rake db:migrate`
-4. `rake db:seed` For testing in the local host, you may use rails s I have  sample accounts for testing. Take a look at the seed.rb file for username and passwords.
+4. `rake db:seed`
+
+For testing in the local host, you may use `rails s` I have  sample accounts for testing. Take a look at the seed.rb file for username and passwords.
 
 ## Contributing
 
