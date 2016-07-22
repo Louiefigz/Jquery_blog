@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-one = User.create(email: "one@gmail.com", password: "12345678")
-two = User.create(email: "two@gmail.com", password: "12345678")
-three = User.create(email: "three@gmail.com", password: "12345678")
+@one = User.create(email: "one@gmail.com", password: "12345678")
+@two = User.create(email: "two@gmail.com", password: "12345678")
+@three = User.create(email: "three@gmail.com", password: "12345678")
 
-post-one = Post.create(name: "first post ever", content: "This is the first post ever made", user_id: one.id)
-post-two = Post.create(name: "Shepards pie", content: "Grandma is the best", user_id: two.id)
-post-three = Post.create(name: "winning the championship", content: "It ain't easy man. Forget what they told you.", user_id: three.id)
+@post_one = Post.create(name: "first post ever", content: "This is the first post ever made", user_id: @one.id)
+@post_two = Post.create(name: "Shepards pie", content: "Grandma is the best", user_id: @two.id)
+@post_three = Post.create(name: "winning the championship", content: "It ain't easy man. Forget what they told you.", user_id: @three.id)
