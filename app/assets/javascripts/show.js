@@ -70,7 +70,9 @@ function attachListeners(){
           }
         }
       }).done(function(){
+
         reloadPost();
+
       });
       e.preventDefault()
     });
@@ -153,6 +155,7 @@ var showTags = function(tags) {
 
 function reloadPost(){
   $.getJSON(path).done(function(response){
+
     showPosts(response.posts)
 
     $('#create-post input[type=text]').val('');
@@ -165,7 +168,6 @@ function reloadPost(){
 
 function getAllPosts(){
 $.getJSON(path).done(function(response){
-
   showPosts(response.posts)
 });
 }
@@ -174,7 +176,6 @@ $.getJSON(path).done(function(response){
 var showPosts = function(posts) {
   var dom = "";
   posts.forEach(function(post) {
-
     dom += (showPost(post, post.current_user_id));
   });
   $("#showPosts").html(dom);
