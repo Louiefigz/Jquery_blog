@@ -1,24 +1,35 @@
-# README
+###
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+This is a very simple Blog Making Application which uses Dynamic Jquery to render, update and delete Posts and Tags without a page refresh. 
 
-* Ruby version
+## Installation
 
-* System dependencies
+This project may work with updated versions of Ruby and Rails however, I built this project using: Ruby 2.2.3 rails 4.2.6
 
-* Configuration
+To get this project up and running,
 
-* Database creation
+1. Clone Repository
+2. Run 'bundle install'
+3. 'rake db:migrate'
+4. 'rake db:seed' For testing in the local host, you may use rails s I have  sample accounts for testing. Take a look at the seed.rb file for username and passwords.
 
-* Database initialization
+## Contributing
 
-* How to run the test suite
+1. Fork
+2. Submit PR
+3. Include tests
+4. Explain why the changes are worth adding
+5. If not sure if I'll accept feature, start by creating an issue.
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+##License
 
-* ...
+The MIT License (MIT) Copyright (c) <2016>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
