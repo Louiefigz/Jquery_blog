@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     end
 
     def edit
-      redirect_to root_path if @post.user.id != current_user 
+      redirect_to root_path if @post.user.id != current_user
       @tag= @post.tags.build
     end
 
@@ -51,6 +51,8 @@ class PostsController < ApplicationController
           format.html { redirect_to :back, notice: 'Post was successfully created.' }
           format.json { render action: 'show', status: :created, location: @post }
         else
+        
+          flash[:message] = @post.errors.full_messages[0]
           format.html { render action: 'new' }
           format.json { render json: @post.errors, status: :unprocessable_entity }
         end
