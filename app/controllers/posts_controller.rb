@@ -33,6 +33,7 @@ class PostsController < ApplicationController
     end
 
     def edit
+      redirect_to root_path if @post.user.id != current_user 
       @tag= @post.tags.build
     end
 
