@@ -1,13 +1,14 @@
 $(function(){
-
+  // These selectors are located in the show show page for a post //
   $('#remove-tag').hide();
   $('#create-tag').hide();
   attachListeners();
-
+// This loads the posts for the index page //
   getAllPosts()
 
 })
 
+// returns the current url making it easier for ajax requests if its a show page specifically//
 var path = window.location.pathname;
 var postId;
 var newPost;
@@ -70,9 +71,7 @@ function attachListeners(){
           }
         }
       }).done(function(){
-
         reloadPost();
-
       });
       e.preventDefault()
     });
@@ -182,7 +181,6 @@ var showPosts = function(posts) {
 }
 
 var showPost = function(post, current_user_id) {
-
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post_td =
   '<table>'+
@@ -191,13 +189,11 @@ var showPost = function(post, current_user_id) {
    post.name +'</td>'+
   //  console.log(post.id);
   '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>';
-
   if (post.user.id == current_user_id) {
     post_td +=
       '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
       '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
   }
-
   post_td += '</tr>' + '</table>' + '<br>';
 
   return post_td;
