@@ -12,6 +12,9 @@ $(function(){
 var path = window.location.pathname;
 var postId;
 var newPost;
+var posts= [];
+var myPosts=[];
+var restPosts=[];
 
 
 
@@ -83,6 +86,9 @@ function attachListeners(){
 
 /////////////  Show Page functions ///////////
 
+
+
+
   function appendTag(){
     $.getJSON(path).done(function(response) {
       // showTags(response.post.tags)
@@ -96,12 +102,10 @@ if ($('#new-tag').val() != '') {
     })
   }
 
-
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
-
+    createTagObjects(response)
     showTags(response.post.tags)
-
     deleteTag()
 
 
@@ -122,8 +126,6 @@ $('#listed-tag-'+id ).hide();
       }
     })
   })
-
-
 }
 
 
@@ -165,9 +167,59 @@ function reloadPost(){
   });
 }
 
+var createPostObjects = function(response) {
+  response.posts.forEach(function(post) {
+    posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
+  })
+  showMyPosts();
+}
+
+var Post = function(id, name, user_id, current_user_id) {
+  this.id = id;
+  this.name = name;
+  this.user_id = user_id;
+  this.current_user_id = current_user_id;
+  this.my_post()
+}
+
+Post.prototype.my_post = function(){
+
+  if(this.current_user_id == this.user_id) {
+    myPosts.push(this);
+  } else {
+    restPosts.push(this);
+  }
+
+}
+
+function showMyPosts(){
+  var dom = "";
+  myPosts.forEach(function(post) {
+    var post_td =
+    '<table>'+
+    '<tr>'+
+    '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+     post.name +'</td>'+
+    //  console.log(post.id);
+    '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
+
+
+
+        '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
+        '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
+        '<tr>' + '<table>';
+
+
+    dom += (post_td);
+  });
+  $("#myposts").html(dom);
+
+}
+
 function getAllPosts(){
 $.getJSON(path).done(function(response){
   showPosts(response.posts)
+  createPostObjects(response)
 });
 }
 
@@ -189,11 +241,13 @@ var showPost = function(post, current_user_id) {
    post.name +'</td>'+
   //  console.log(post.id);
   '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>';
+
   if (post.user.id == current_user_id) {
     post_td +=
       '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
       '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
   }
+
   post_td += '</tr>' + '</table>' + '<br>';
 
   return post_td;

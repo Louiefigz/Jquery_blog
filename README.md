@@ -1,8 +1,8 @@
-###
+### Jquery-Blog
 
 ## Overview
 
-This is a very simple Blog Making Application which uses Dynamic Jquery to render, update and delete Posts and Tags without a page refresh.
+This is a very simple Blog Making Application which uses Dynamic Jquery to create, update and delete Posts and Tags without a page refresh.
 
 ## Installation
 
