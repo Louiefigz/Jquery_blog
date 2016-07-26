@@ -78,6 +78,12 @@ function attachListeners(){
     $('#restofposts').show();
   })
 
+  $('#closepostsTheywrote').click(function(){
+    $('#closepostsTheywrote').hide();
+    $('#postsTheyWrote').show();
+    $('#restofposts').hide();
+  })
+
 
 
   $('#new-post-form').click(function(){
@@ -189,7 +195,7 @@ function reloadPost(){
     $('#create-post').hide();
     // deleteTag()
     $('#new-post-form').show();
-    
+
     posts = [];
     getAllPosts();
   });
