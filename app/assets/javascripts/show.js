@@ -65,6 +65,13 @@ function attachListeners(){
     $('#myposts').show();
   })
 
+  $('#closepostsIwrote').click(function(){
+
+    $('#closepostsIwrote').hide();
+    $('#myposts').hide();
+    $('#postsIWrote').show();
+  })
+
   $('#postsTheyWrote').click(function(){
     $('#postsTheyWrote').hide();
     $('#closepostsTheywrote').show();
@@ -182,6 +189,9 @@ function reloadPost(){
     $('#create-post').hide();
     // deleteTag()
     $('#new-post-form').show();
+    
+    posts = [];
+    getAllPosts();
   });
 }
 
