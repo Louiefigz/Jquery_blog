@@ -2,6 +2,8 @@ $(function(){
   // These selectors are located in the show show page for a post //
   $('#remove-tag').hide();
   $('#create-tag').hide();
+  $('#myposts').hide();
+  $('#restofposts').hide();
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
@@ -54,6 +56,16 @@ function attachListeners(){
 
 
 ///////Index page listeners////////
+
+  $('#postsIWrote').click(function(){
+    $('#myposts').show();
+  })
+
+  $('#postsTheyWrote').click(function(){
+    $('#restofposts').show();
+  })
+
+
 
   $('#new-post-form').click(function(){
     $('#create-post').show();
@@ -172,6 +184,7 @@ var createPostObjects = function(response) {
     posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
   })
   showMyPosts();
+  showRestPosts();
 }
 
 var Post = function(id, name, user_id, current_user_id) {
@@ -189,6 +202,24 @@ Post.prototype.my_post = function(){
   } else {
     restPosts.push(this);
   }
+}
+
+function showRestPosts(){
+  var dom = "";
+  restPosts.forEach(function(post) {
+    var post_td =
+    '<table>'+
+    '<tr>'+
+    '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+     post.name +'</td>'+
+
+    '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
+        '<tr>' + '<table>';
+
+    dom += (post_td);
+  });
+
+  $("#restofposts").html(dom);
 
 }
 
@@ -202,8 +233,6 @@ function showMyPosts(){
      post.name +'</td>'+
     //  console.log(post.id);
     '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
-
-
 
         '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
         '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
