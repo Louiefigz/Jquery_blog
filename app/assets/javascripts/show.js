@@ -4,6 +4,8 @@ $(function(){
   $('#create-tag').hide();
   $('#myposts').hide();
   $('#restofposts').hide();
+  $('#closepostsIwrote').hide();
+  $('#closepostsTheywrote').hide();
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
@@ -58,10 +60,14 @@ function attachListeners(){
 ///////Index page listeners////////
 
   $('#postsIWrote').click(function(){
+    $('#postsIWrote').hide();
+    $('#closepostsIwrote').show();
     $('#myposts').show();
   })
 
   $('#postsTheyWrote').click(function(){
+    $('#postsTheyWrote').hide();
+    $('#closepostsTheywrote').show();
     $('#restofposts').show();
   })
 
