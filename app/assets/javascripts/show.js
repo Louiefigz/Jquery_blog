@@ -221,7 +221,11 @@ var Post = function(id, name, user_id, current_user_id) {
 Post.prototype.my_post = function(){
 
   if(this.current_user_id == this.user_id) {
-    myPosts.push(this);
+    debugger;
+    if(!myPosts.includes(this)){
+
+      myPosts.push(this);
+    }
   } else {
     restPosts.push(this);
   }
