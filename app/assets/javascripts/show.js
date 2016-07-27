@@ -10,6 +10,7 @@ $(function(){
 // This loads the posts for the index page //
   getAllPosts()
 
+
 })
 
 // returns the current url making it easier for ajax requests if its a show page specifically//
@@ -135,7 +136,6 @@ if ($('#new-tag').val() != '') {
 
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
-    createTagObjects(response)
     showTags(response.post.tags)
     deleteTag()
 
@@ -205,6 +205,7 @@ var createPostObjects = function(response) {
   response.posts.forEach(function(post) {
     posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
   })
+
   showMyPosts();
   showRestPosts();
 }
@@ -263,14 +264,23 @@ function showMyPosts(){
 
     dom += (post_td);
   });
+
+  $('#myposts table').remove();
   $("#myposts").html(dom);
 
 }
 
 function getAllPosts(){
+
 $.getJSON(path).done(function(response){
   showPosts(response.posts)
+
   createPostObjects(response)
+
+  $('#mypostnumber').val('')
+  $('#mypostnumber').html(posts.length - restPosts.length + " posts")
+  $('#theirnumber').html(posts.length - myPosts.length + " posts")
+
 });
 }
 
