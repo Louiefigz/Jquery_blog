@@ -202,6 +202,7 @@ function reloadPost(){
 }
 
 var createPostObjects = function(response) {
+  myPosts =[]
   response.posts.forEach(function(post) {
     posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
   })
@@ -215,18 +216,19 @@ var Post = function(id, name, user_id, current_user_id) {
   this.name = name;
   this.user_id = user_id;
   this.current_user_id = current_user_id;
-  // this.my_post()
+  this.my_post()
 }
 
 Post.prototype.my_post = function(){
-  debugger;
-  var ctrl = this;
 
-  for (i = 0; i < posts.length; i++) {
-    debugger;
-    myPosts.push(this);
-    }
-  }
+ if(this.current_user_id == this.user_id) {
+   myPosts.push(this);
+  } else {
+     restPosts.push(this);
+   }
+
+ }
+
 
 
 
