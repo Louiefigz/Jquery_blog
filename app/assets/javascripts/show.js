@@ -9,7 +9,7 @@ $(function(){
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
-
+  jsonTags()
 
 })
 
@@ -44,18 +44,20 @@ function attachListeners(){
 
 
 
-    $('#create-tag').submit(function(e){
-      $.ajax({
-        url: path + "/create_tag",
-        method: "POST",
-        data: {
-          name: $('#new-tag').val()
-        }
-      }).done(function(){
-        appendTag()
-      });
-      e.preventDefault();
+  $('#create-tag').submit(function(e){
+    $.ajax({
+      url: path + "/create_tag",
+      method: "POST",
+      data: {
+        name: $('#new-tag').val()
+      }
+    }).done(function(){
+      appendTag()
     });
+    e.preventDefault();
+  });
+
+
 
 
 ///////Index page listeners////////
@@ -124,6 +126,8 @@ function attachListeners(){
   function appendTag(){
     $.getJSON(path).done(function(response) {
       // showTags(response.post.tags)
+      jsonTags()
+
 
 if ($('#new-tag').val() != '') {
       new_tag = showTag(response.post.tags[response.post.tags.length-1])
@@ -137,11 +141,36 @@ if ($('#new-tag').val() != '') {
 var getAllTags = function() {
   $.getJSON(path).done(function(response) {
     showTags(response.post.tags)
+    createTagModel(response)
     deleteTag()
-
 
   })
 }
+
+function jsonTags(){
+  tags =[];
+  $.getJSON(path).done(function(response){
+    createTagModel(response)
+    $('#numberoftags').html(tags.length)
+  })
+}
+
+
+var tags =[];
+
+var createTagModel = function(response){
+
+  tags =[];
+  response.post.tags.forEach(function(tag){
+    tags.push(new tagObject(tag.name))
+
+  })
+}
+
+function tagObject(tag){
+  this.name = tag;
+}
+
 
 function deleteTag(){
 $(".delete_class").click(function(e){
@@ -185,6 +214,7 @@ var showTags = function(tags) {
 
 
 
+
 function reloadPost(){
   $.getJSON(path).done(function(response){
 
@@ -203,6 +233,7 @@ function reloadPost(){
 
 var createPostObjects = function(response) {
   myPosts =[]
+  restPosts =[]
   response.posts.forEach(function(post) {
     posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
   })
@@ -288,6 +319,7 @@ $.getJSON(path).done(function(response){
   createPostObjects(response)
 
   $('#mypostnumber').val('')
+  debugger;
   $('#mypostnumber').html(posts.length - restPosts.length + " posts")
   $('#theirnumber').html(posts.length - myPosts.length + " posts")
 
