@@ -215,21 +215,25 @@ var Post = function(id, name, user_id, current_user_id) {
   this.name = name;
   this.user_id = user_id;
   this.current_user_id = current_user_id;
-  this.my_post()
+  // this.my_post()
 }
 
 Post.prototype.my_post = function(){
+  debugger;
+  var ctrl = this;
 
-  if(this.current_user_id == this.user_id) {
+  for (i = 0; i < posts.length; i++) {
     debugger;
-    if(!myPosts.includes(this)){
-
-      myPosts.push(this);
+    myPosts.push(this);
     }
-  } else {
-    restPosts.push(this);
   }
-}
+
+
+
+
+
+
+
 
 function showRestPosts(){
   var dom = "";
