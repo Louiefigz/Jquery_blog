@@ -6,6 +6,7 @@ $(function(){
   $('#restofposts').hide();
   $('#closepostsIwrote').hide();
   $('#closepostsTheywrote').hide();
+  $('#create-comment').hide();
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
@@ -126,10 +127,10 @@ function attachListeners(){
   function appendTag(){
     $.getJSON(path).done(function(response) {
       // showTags(response.post.tags)
-     
+
       jsonTags()
      // getAllTags
-      
+
 
 
 if ($('#new-tag').val() != '') {
@@ -170,7 +171,7 @@ var createTagModel = function(response){
     tags.push(new tagObject(tag.name))
 
   })
-  
+
 }
 
 function tagObject(tag){
@@ -180,7 +181,7 @@ function tagObject(tag){
 
 function deleteTag(){
 $(".delete_class").click(function(e){
-  
+
 
   $('#numberoftags').html(tags.length -1);
 var id = $(this).attr('data-tag-id');
