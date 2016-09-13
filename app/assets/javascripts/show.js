@@ -58,6 +58,18 @@ function attachListeners(){
     e.preventDefault();
   });
 
+  $('#showComments').click(function(){
+    $('#create-comment').show();
+
+    $.ajax({
+      url: path + "/create_comment";
+      method: "POST";
+      data:;
+    })
+
+
+  })
+
 
 
 
