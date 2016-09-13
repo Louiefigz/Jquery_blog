@@ -126,7 +126,10 @@ function attachListeners(){
   function appendTag(){
     $.getJSON(path).done(function(response) {
       // showTags(response.post.tags)
+     
       jsonTags()
+     // getAllTags
+      
 
 
 if ($('#new-tag').val() != '') {
@@ -134,6 +137,7 @@ if ($('#new-tag').val() != '') {
       $('#tags').append(new_tag)
       $('#new-tag').val('');
       deleteTag()
+      $('#numberoftags').html($('#tags li').length)
     }
     })
   }
@@ -149,6 +153,7 @@ var getAllTags = function() {
 
 function jsonTags(){
   tags =[];
+
   $.getJSON(path).done(function(response){
     createTagModel(response)
     $('#numberoftags').html(tags.length)
@@ -165,6 +170,7 @@ var createTagModel = function(response){
     tags.push(new tagObject(tag.name))
 
   })
+  
 }
 
 function tagObject(tag){
@@ -220,7 +226,9 @@ var showTags = function(tags) {
 function reloadPost(){
   $.getJSON(path).done(function(response){
 
-    showPosts(response.posts)
+    showPosts(response.posts);
+    createPostObjects(response);
+    $('#mypostnumber').html($('#myposts .post-listener').length);
 
     $('#create-post input[type=text]').val('');
     $('#create-post textarea').val('');
@@ -321,7 +329,6 @@ $.getJSON(path).done(function(response){
   createPostObjects(response)
 
   $('#mypostnumber').val('')
-  debugger;
   $('#mypostnumber').html(posts.length - restPosts.length + " posts")
   $('#theirnumber').html(posts.length - myPosts.length + " posts")
 
