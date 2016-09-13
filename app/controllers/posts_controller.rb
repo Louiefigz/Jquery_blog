@@ -33,7 +33,8 @@ class PostsController < ApplicationController
     end
 
     def edit
-      redirect_to root_path if @post.user.id != current_user
+      # binding.pry
+      redirect_to root_path if @post.user.id != current_user.id
       @tag= @post.tags.build
     end
 
@@ -94,10 +95,10 @@ class PostsController < ApplicationController
       if params[:name] != ''
         tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
         post = Post.find(params[:id])
-      if !post.tags.include?(tag)
-        post.tags << tag
+        if !post.tags.include?(tag)
+          post.tags << tag
+        end
       end
-    end
     end
 
     private
