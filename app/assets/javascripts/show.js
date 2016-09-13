@@ -60,15 +60,16 @@ function attachListeners(){
 
   $('#showComments').click(function(){
     $('#create-comment').show();
+  });
 
+  $('#create-comment').submit(function(){
+  
     $.ajax({
-      url: path + "/create_comment";
-      method: "POST";
-      data:;
-    })
-
-
-  })
+      url: path + "/create_comment",
+      method: "POST",
+      data:{'comment': $('#new-comment').val()}
+      });
+    });
 
 
 
@@ -110,6 +111,7 @@ function attachListeners(){
     $('#create-post').hide();
 
     $('#create-post').submit(function(e){
+
       $.ajax({
         url: "/posts",
         method: "POST",

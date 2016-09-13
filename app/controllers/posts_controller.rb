@@ -101,6 +101,12 @@ class PostsController < ApplicationController
       end
     end
 
+    def create_comment
+      binding.pry
+      post = Post.find(params[:id])
+      post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
