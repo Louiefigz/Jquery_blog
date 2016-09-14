@@ -371,7 +371,9 @@ var showComment = function(comment){
   '<table>'+
   '<tr>'+
   '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
-   comment.content +'</td>';
+   comment.content +'</td>' + '<tr>' +
+   '<td>' + 'Author:  ' + comment.author_name +'</td>' +
+   '</tr>';
 
 
   comment_td += '</tr>' + '</table>' + '<br>';
