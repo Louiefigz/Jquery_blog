@@ -92,17 +92,21 @@ class PostsController < ApplicationController
     end
 
     def create_tag
+
       if params[:name] != ''
         tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
         post = Post.find(params[:id])
         if !post.tags.include?(tag)
           post.tags << tag
+          render json: post
         end
+      else
+        render status: 404, plain: 'Must have a name!'
       end
     end
 
     def create_comment
-    
+
       post = Post.find(params[:id])
       post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
     end

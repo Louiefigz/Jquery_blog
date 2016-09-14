@@ -47,16 +47,19 @@ function attachListeners(){
 
 
   $('#create-tag').submit(function(e){
+    e.preventDefault();
     $.ajax({
       url: path + "/create_tag",
       method: "POST",
       data: {
         name: $('#new-tag').val()
       }
-    }).done(function(){
-      appendTag()
+    }).success(function(data){
+
+      appendTag(data);
+    }).error(function(data){
+      // debugger;
     });
-    e.preventDefault();
   });
 
   $('#showCommentForm').click(function(){
@@ -155,41 +158,40 @@ function attachListeners(){
 
 
 
-  function appendTag(){
-    $.getJSON(path).done(function(response) {
-      // showTags(response.post.tags)
+function appendTag(data){
+   var tags = data.post.tags.slice(-1)[0];
 
-      jsonTags()
-     // getAllTags
+  //  debugger;
+    // showTags(response.post.tags)
 
-
-
-if ($('#new-tag').val() != '') {
-      new_tag = showTag(response.post.tags[response.post.tags.length-1])
-      $('#tags').append(new_tag)
-      $('#new-tag').val('');
-      deleteTag()
-      $('#numberoftags').html($('#tags li').length)
-    }
-    })
+    // jsonTags()
+   // getAllTags
+    if ($('#new-tag').val() != '') {
+          new_tag = showTag(tags)
+          // debugger;
+          $('#tags').append(new_tag)
+          $('#new-tag').val('');
+          deleteTag()
+          $('#numberoftags').html($('#tags li').length)
   }
+}
 
 var getAllTags = function() {
-  $.getJSON(path).done(function(response) {
-    showTags(response.post.tags)
-    createTagModel(response)
-    deleteTag()
+$.getJSON(path).done(function(response) {
+  showTags(response.post.tags)
+  createTagModel(response)
+  deleteTag()
 
-  })
+})
 }
 
 function jsonTags(){
-  tags =[];
+tags =[];
 
-  $.getJSON(path).done(function(response){
-    createTagModel(response)
-    $('#numberoftags').html(tags.length)
-  })
+$.getJSON(path).done(function(response){
+  createTagModel(response)
+  $('#numberoftags').html(tags.length)
+})
 }
 
 
@@ -197,16 +199,16 @@ var tags =[];
 
 var createTagModel = function(response){
 
-  tags =[];
-  response.post.tags.forEach(function(tag){
-    tags.push(new tagObject(tag.name))
+tags =[];
+response.post.tags.forEach(function(tag){
+  tags.push(new tagObject(tag.name))
 
-  })
+})
 
 }
 
 function tagObject(tag){
-  this.name = tag;
+this.name = tag;
 }
 
 
@@ -214,39 +216,39 @@ function deleteTag(){
 $(".delete_class").click(function(e){
 
 
-  $('#numberoftags').html(tags.length -1);
+$('#numberoftags').html(tags.length -1);
 var id = $(this).attr('data-tag-id');
 $('#listed-tag-'+id ).hide();
 
-    $.ajax({
-      url: path + '/delete_tag',
-      method: "DELETE",
-      data:{
-        tag_id: $(this).attr("data-tag-id")
-      }
-    })
+  $.ajax({
+    url: path + '/delete_tag',
+    method: "DELETE",
+    data:{
+      tag_id: $(this).attr("data-tag-id")
+    }
   })
+})
 }
 
 
 var showTag = function(tag) {
-  // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
-  var tag =
-    ' <li id="listed-tag-'+tag.id+'" data-name=" ' + tag.name+ ' " data-tag-id="'+tag.id+'">' +
-       tag.name +
-      '<button class="delete_class" data-tag-id="'+tag.id+'">Remove</button>' +
-    '</li>';
+// return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
+var tag =
+  ' <li id="listed-tag-'+tag.id+'" data-name=" ' + tag.name+ ' " data-tag-id="'+tag.id+'">' +
+     tag.name +
+    '<button class="delete_class" data-tag-id="'+tag.id+'">Remove</button>' +
+  '</li>';
 
-  return tag;
+return tag;
 }
 
 
 var showTags = function(tags) {
-  var dom = "";
-  tags.forEach(function(tag) {
-    dom += (showTag(tag));
-  });
-  $("#tags").html(dom);
+var dom = "";
+tags.forEach(function(tag) {
+  dom += (showTag(tag));
+});
+$("#tags").html(dom);
 }
 
 
@@ -260,8 +262,9 @@ var showTags = function(tags) {
 function reloadPost(){
   $.getJSON(path).done(function(response){
 
-    showPosts(response.posts);
     createPostObjects(response);
+    showPosts(
+    );
     $('#mypostnumber').html($('#myposts .post-listener').length);
 
     $('#create-post input[type=text]').val('');
@@ -276,11 +279,14 @@ function reloadPost(){
 }
 
 var createPostObjects = function(response) {
+  // posts =[]
   myPosts =[]
   restPosts =[]
   response.posts.forEach(function(post) {
     posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
   })
+
+  // debugger;
 
   showMyPosts();
   showRestPosts();
@@ -309,16 +315,16 @@ Post.prototype.my_post = function(){
 function showRestPosts(){
   var dom = "";
   restPosts.forEach(function(post) {
-    var post_td =
-    '<table>'+
-    '<tr>'+
-    '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
-     post.name +'</td>'+
+    // var post_td =
+    // '<table>'+
+    // '<tr>'+
+    // '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+    //  post.name +'</td>'+
+    //
+    // '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
+    //     '<tr>' + '<table>';
 
-    '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
-        '<tr>' + '<table>';
-
-    dom += (post_td);
+    dom += (showPost(post, post.current_user_id));
   });
 
   $("#restofposts").html(dom);
@@ -328,20 +334,22 @@ function showRestPosts(){
 function showMyPosts(){
   var dom = "";
   myPosts.forEach(function(post) {
-    var post_td =
-    '<table>'+
-    '<tr>'+
-    '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
-     post.name +'</td>'+
-    //  console.log(post.id);
-    '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
-
-        '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
-        '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
-        '<tr>' + '<table>';
 
 
-    dom += (post_td);
+    // var post_td =
+    // '<table>'+
+    // '<tr>'+
+    // '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+    //  post.name +'</td>'+
+    // //  console.log(post.id);
+    // '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>' +
+    //
+    //     '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
+    //     '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>'+
+    //     '<tr>' + '<table>';
+
+
+    dom += (showPost(post, post.current_user_id));
   });
 
   $('#myposts table').remove();
@@ -352,8 +360,8 @@ function showMyPosts(){
 function getAllPosts(){
 
 $.getJSON(path).done(function(response){
-  showPosts(response.posts);
   createPostObjects(response)
+  showPosts(posts);
   $('#mypostnumber').val('')
   $('#mypostnumber').html(posts.length - restPosts.length + " posts")
   $('#theirnumber').html(posts.length - myPosts.length + " posts")
@@ -403,6 +411,7 @@ var showPosts = function(posts) {
 }
 
 var showPost = function(post, current_user_id) {
+  // debugger;
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post_td =
   '<table>'+
@@ -412,7 +421,7 @@ var showPost = function(post, current_user_id) {
   //  console.log(post.id);
   '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>';
 
-  if (post.user.id == current_user_id) {
+  if (post.user_id == post.current_user_id) {
     post_td +=
       '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
       '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
