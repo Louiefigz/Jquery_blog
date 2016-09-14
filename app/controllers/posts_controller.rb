@@ -102,7 +102,7 @@ class PostsController < ApplicationController
     end
 
     def create_comment
-      binding.pry
+    
       post = Post.find(params[:id])
       post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
     end

@@ -62,13 +62,19 @@ function attachListeners(){
     $('#create-comment').show();
   });
 
-  $('#create-comment').submit(function(){
+  $('#create-comment').submit(function(e){
 
     $.ajax({
       url: path + "/create_comment",
       method: "POST",
       data:{'comment': $('#new-comment').val()}
+      }).done(function(){
+        $.getJSON(path).done(function(response){
+          showComments(response.post);
+          $('#new-comment').val('');
+        });
       });
+      e.preventDefault();
     });
 
 
@@ -337,12 +343,8 @@ function showMyPosts(){
 function getAllPosts(){
 
 $.getJSON(path).done(function(response){
-
-
   showPosts(response.posts);
-
   createPostObjects(response)
-
   $('#mypostnumber').val('')
   $('#mypostnumber').html(posts.length - restPosts.length + " posts")
   $('#theirnumber').html(posts.length - myPosts.length + " posts")
@@ -358,9 +360,9 @@ if (path.split('/')[path.split('/').length-1] != NaN){
 
 var showComments = function(post){
   var dom ="";
-  debugger;
+
   post.comments.forEach(function(comment){
-    console.log(comment);
+
     dom+= (showComment(comment));
   });
   $('#showComments').html(dom);
