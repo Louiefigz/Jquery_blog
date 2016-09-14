@@ -58,18 +58,20 @@ function attachListeners(){
     e.preventDefault();
   });
 
-  $('#showComments').click(function(){
+  $('#showCommentForm').click(function(){
     $('#create-comment').show();
   });
 
   $('#create-comment').submit(function(){
-  
+
     $.ajax({
       url: path + "/create_comment",
       method: "POST",
       data:{'comment': $('#new-comment').val()}
       });
     });
+
+
 
 
 
@@ -233,6 +235,8 @@ var showTags = function(tags) {
 }
 
 
+
+
 /////////////////////// INDEX.JS FILE ////////////////////////
 
 
@@ -287,12 +291,6 @@ Post.prototype.my_post = function(){
 
 
 
-
-
-
-
-
-
 function showRestPosts(){
   var dom = "";
   restPosts.forEach(function(post) {
@@ -339,7 +337,9 @@ function showMyPosts(){
 function getAllPosts(){
 
 $.getJSON(path).done(function(response){
-  showPosts(response.posts)
+
+
+  showPosts(response.posts);
 
   createPostObjects(response)
 
@@ -348,6 +348,36 @@ $.getJSON(path).done(function(response){
   $('#theirnumber').html(posts.length - myPosts.length + " posts")
 
 });
+}
+
+if (path.split('/')[path.split('/').length-1] != NaN){
+  $.getJSON(path).done(function(response){
+    showComments(response.post);
+  });
+}
+
+var showComments = function(post){
+  var dom ="";
+  debugger;
+  post.comments.forEach(function(comment){
+    console.log(comment);
+    dom+= (showComment(comment));
+  });
+  $('#showComments').html(dom);
+}
+
+var showComment = function(comment){
+  var comment_td =
+  '<table>'+
+  '<tr>'+
+  '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
+   comment.content +'</td>';
+
+
+  comment_td += '</tr>' + '</table>' + '<br>';
+
+  return comment_td;
+
 }
 
 

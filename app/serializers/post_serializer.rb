@@ -3,6 +3,7 @@ class PostSerializer < ActiveModel::Serializer
   has_many :tags, serializer:PostTagSerializer
   has_one :user
   delegate :current_user, to: :scope
+  has_many :comments
 
   def current_user_id
     current_user.id
