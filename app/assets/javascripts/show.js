@@ -7,6 +7,7 @@ $(function(){
   $('#closepostsIwrote').hide();
   $('#closepostsTheywrote').hide();
   $('#create-comment').hide();
+  $('#hideCommentForm').hide();
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
@@ -60,6 +61,14 @@ function attachListeners(){
 
   $('#showCommentForm').click(function(){
     $('#create-comment').show();
+    $('#showCommentForm').hide();
+    $('#hideCommentForm').show();
+  });
+
+  $('#hideCommentForm').click(function(){
+    $('#hideCommentForm').hide();
+    $('#showCommentForm').show();
+    $('#create-comment').hide();
   });
 
   $('#create-comment').submit(function(e){
