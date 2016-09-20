@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require index
 //= require tags
 //= require show
+//= require listeners
