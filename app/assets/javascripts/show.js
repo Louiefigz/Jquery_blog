@@ -18,7 +18,10 @@ var showComments = function(post){
 }
 
 var showComment = function(comment){
+  // debugger;
+
   var comment_td =
+
     '<table>'+
     '<tr>'+
     '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
@@ -27,4 +30,5 @@ var showComment = function(comment){
      '</tr>';
     comment_td += '</tr>' + '</table>' + '<br>';
   return comment_td;
+  
 }

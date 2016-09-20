@@ -76,6 +76,9 @@ function attachListeners(){
         $.getJSON(path).done(function(response){
           showComments(response.post);
           $('#new-comment').val('');
+          $('#hideCommentForm').hide();
+          $('#showCommentForm').show();
+          $('#create-comment').hide();
         });
       });
       e.preventDefault();

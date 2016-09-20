@@ -17,8 +17,12 @@ class PostSerializer < ActiveModel::Serializer
         #
   #     end
   #   end
-  # 
+  #
   # end
+
+  def comments
+    object.comments.order(id: :desc)
+  end
 
 
 end
