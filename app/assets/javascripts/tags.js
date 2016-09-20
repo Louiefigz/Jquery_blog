@@ -2,9 +2,12 @@
 
 
 function appendTag(data){
-   var tags = data.post.tags.slice(-1)[0];
+  // debugger;
+   var tag = data.post.tags.slice(-1)[0];
+
     if ($('#new-tag').val() != '') {
-          $('#tags').append(new_tag)
+      // debugger;
+          $('#tags').append(showTag(tag))
           $('#new-tag').val('');
           deleteTag()
           $('#numberoftags').html($('#tags li').length)
