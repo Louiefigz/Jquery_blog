@@ -27,8 +27,10 @@ var showComment = function(comment){
     '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
      comment.content +'</td>' + '<tr>' +
      '<td>' + 'Author:  ' + comment.author_name +'</td>' +
-     '</tr>';
+     '</tr>'+
+     '<td>' + '<button id="showCommentReplyForm" data-id=" '+comment.id+ ' ">' + 'Reply' +
+     '</button>' + '</td>';
     comment_td += '</tr>' + '</table>' + '<br>';
   return comment_td;
-  
+
 }

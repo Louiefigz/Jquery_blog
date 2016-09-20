@@ -66,6 +66,14 @@ function attachListeners(){
     $('#create-comment').hide();
   });
 
+
+  $('#showComments').on('click', '#showCommentReplyForm', function(){
+    debugger;
+    
+    console.log('form button clicked');
+  });
+
+
   $('#create-comment').submit(function(e){
 
     $.ajax({
@@ -83,6 +91,7 @@ function attachListeners(){
       });
       e.preventDefault();
     });
+
 
 
 
