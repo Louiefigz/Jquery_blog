@@ -1,6 +1,8 @@
 
-
-if (path.split('/')[path.split('/').length-1] != NaN){
+// Function below checks to see if we are on a shwo page and if so... we are going to display the following information.
+// This may not be a great way to return a show page if I plan on building this out to have many other show pages.
+// debugger;
+if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN ){
   $.getJSON(path).done(function(response){
     showComments(response.post);
   });
@@ -40,20 +42,18 @@ var showPost = function(post, current_user_id) {
   // debugger;
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post_td =
-  '<table>'+
-  '<tr>'+
-  '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
-   post.name +'</td>'+
-  //  console.log(post.id);
-  '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>';
+    '<table>'+
+    '<tr>'+
+    '<td class="post-listener" data-name=" ' + post.name + ' " data-post-id=" ' + post.id +' ">'+
+     post.name +'</td>'+
+    //  console.log(post.id);
+    '<td>'+  '<a href="/posts/'+post.id+' " >' + "Show " + " "+' </td>';
 
-  if (post.user_id == post.current_user_id) {
-    post_td +=
-      '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
-      '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
-  }
-
-  post_td += '</tr>' + '</table>' + '<br>';
-
+      if (post.user_id == post.current_user_id) {
+        post_td +=
+          '<td>'+  '<a href="/posts/'+post.id+'/edit " >' + " Edit" +' </td>'+
+          '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
+      }
+    post_td += '</tr>' + '</table>' + '<br>';
   return post_td;
 }
