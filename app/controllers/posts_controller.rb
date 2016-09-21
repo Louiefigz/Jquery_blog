@@ -106,9 +106,15 @@ class PostsController < ApplicationController
     end
 
     def create_comment
-
       post = Post.find(params[:id])
-      post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
+      comment = Comment.find_or_create_by(comment_params)
+    
+        if comment.save
+          comment.update(author_id: current_user.id )
+          post.comments.find_or_create_by(comment)
+          render json: comment
+        end
+      # post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
     end
 
     private
@@ -120,6 +126,10 @@ class PostsController < ApplicationController
       # Never trust parameters from the scary internet, only allow the white list through.
       def post_params
         params.require(:post).permit(:name, :content ,:tag_ids => [], tag_attributes: [:name])
+      end
+
+      def comment_params
+        params.require(:comment).permit(:content, :parent_id, :post_id)
       end
 
       def tag_params

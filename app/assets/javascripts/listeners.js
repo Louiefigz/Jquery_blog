@@ -8,6 +8,7 @@ $(function(){
   $('#closepostsTheywrote').hide();
   $('#create-comment').hide();
   $('#hideCommentForm').hide();
+  // $('#createCommentReplyForm').hide();
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
@@ -66,12 +67,12 @@ function attachListeners(){
     $('#create-comment').hide();
   });
 
-
-  $('#showComments').on('click', '#showCommentReplyForm', function(){
-    debugger;
-    
-    console.log('form button clicked');
-  });
+  //
+  // $('#showComments').on('click', '#showCommentReplyForm', function(){
+  //   debugger;
+  //
+  //   console.log('form button clicked');
+  // });
 
 
   $('#create-comment').submit(function(e){
@@ -79,7 +80,11 @@ function attachListeners(){
     $.ajax({
       url: path + "/create_comment",
       method: "POST",
-      data:{'comment': $('#new-comment').val()}
+      data:{'comment':{
+          'content':
+         $('#new-comment').val()
+         }
+       }
       }).done(function(){
         $.getJSON(path).done(function(response){
           showComments(response.post);
@@ -92,6 +97,23 @@ function attachListeners(){
       e.preventDefault();
     });
 
+    $('#showComments').on("submit", '#createCommentReplyForm', function(){
+      // debugger;
+      $.ajax({
+        url: path + '/create_comment',
+        method: "POST",
+        data:{
+          "comment": {
+          "content": $('#new-reply').val(),
+          "parent_id": parseInt($('#parent_id').attr('value')),
+          "post_id": parseInt($('#post_id').attr('value'))
+          }
+        }
+      }).done(function(resp){
+        debugger;
+          console.log('comment reply');
+      });
+    });
 
 
 
