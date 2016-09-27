@@ -4,7 +4,7 @@
 // debugger;
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN ){
   $.getJSON(path).done(function(response){
-    debugger;
+    // debugger;
     showComments(response.post);
   });
 }
@@ -12,34 +12,82 @@ if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN
 
 var showComments = function(post){
   var dom ="";
-  debugger;
+  // debugger;
   post.comments.forEach(function(comment){
-    dom+= (showComment(comment));
+    // debugger;
+    if(comment.parent_id == null){
+      dom+= (showComment(comment));
+    }
   });
   $('#showComments').html(dom);
 }
 
 var showComment = function(comment){
-  // debugger;
 
-  var comment_td =
+  if(comment.replies.length <1){
+    var comment_td =
+      '<table>'+
+      '<tr>'+
+      '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
+       comment.content +'</td>' + '<tr>' +
+       '<td>' + 'Author:  ' + comment.author_name +'</td>' +
+       '</tr>'+
+       '<td>' +
+       '<form id="createCommentReplyForm">'+
+         '<input type="text" placeholder="Comment Reply" class="new-reply">' +
+         '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
+         '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
+         '<input type="submit">' +
+       '</form>' +
 
-    '<table>'+
-    '<tr>'+
-    '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
-     comment.content +'</td>' + '<tr>' +
-     '<td>' + 'Author:  ' + comment.author_name +'</td>' +
-     '</tr>'+
-     '<td>' +
-     '<form id="createCommentReplyForm">'+
-       '<input type="text" placeholder="Comment Reply" id="new-reply">' +
-       '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
-       '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
-       '<input type="submit">' +
-     '</form>' +
+       '</td>';
+      comment_td += '</tr>' + '</table>' + '<br>';
+  } else {
+    var comment_td =
+      '<table>'+
+      '<tr>'+
+      '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
+       comment.content +'</td>' + '<tr>' +
+       '<td>' + 'Author:  ' + comment.author_name +'</td>' +
+       '</tr>';
 
-     '</td>';
-    comment_td += '</tr>' + '</table>' + '<br>';
+       comment_td += showReplies(comment.replies);
+       comment_td +=
+       '<tr>' +
+       '<td>' +
+       '<form id="createCommentReplyForm">'+
+         '<input type="text" placeholder="Comment Reply" class="new-reply" data-commentId="' + comment.id + '">' +
+         '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
+         '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
+         '<input type="submit">' +
+       '</form>' +
+       '</td>' +
+       '</tr>';
+
+       comment_td += '</table>' + '<br>';
+
+
+      //  debugger;
+
+  };
   return comment_td;
 
+}
+
+function showReplies(comments){
+  // debugger;
+
+var replyComment="";
+  comments.forEach(function(reply){
+    replyComment+= showReply(reply);
+  });
+  return replyComment;
+}
+
+function showReply(reply){
+  var replyComment =
+  '<tr>'+
+  '<td>' + '+'+  reply.content+ '</td>' +
+  '</td>';
+return replyComment;
 }

@@ -81,8 +81,9 @@ function attachListeners(){
       url: path + "/create_comment",
       method: "POST",
       data:{'comment':{
-          'content':
-         $('#new-comment').val()
+          'content': $('#new-comment').val(),
+          'post_id': parseInt($('#post_id').val())
+
          }
        }
       }).done(function(){
@@ -97,16 +98,18 @@ function attachListeners(){
       e.preventDefault();
     });
 
-    $('#showComments').on("submit", '#createCommentReplyForm', function(){
-      // debugger;
+    $('#showComments').on("submit", '#createCommentReplyForm', function(e){
+      debugger;
+
+
       $.ajax({
         url: path + '/create_comment',
         method: "POST",
         data:{
           "comment": {
-          "content": $('#new-reply').val(),
-          "parent_id": parseInt($('#parent_id').attr('value')),
-          "post_id": parseInt($('#post_id').attr('value'))
+          "content": $(this).find(".new-reply").val(),
+          "parent_id": parseInt($(this).find("#parent_id").val()),
+          "post_id": parseInt($(this).find("#post_id").val())
           }
         }
       }).done(function(resp){
