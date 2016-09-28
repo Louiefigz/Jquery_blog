@@ -106,15 +106,17 @@ class PostsController < ApplicationController
     end
 
     def create_comment
-      # binding.pry
+      binding.pry
       post = Post.find(params[:id])
       comment = Comment.new(comment_params)
       comment.update(author_id: current_user.id, post_id: params[:comment][:post_id].to_i )
-      post.comments.find_or_create_by(comment)
+          if !post.comments.include?(comment)
+            post.comments << comment
+          end
       comment.save
-      if comment.save
-        render json: comment
-      end 
+          if comment.save
+            render json: comment
+          end
 
       # post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
     end

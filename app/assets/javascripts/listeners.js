@@ -75,8 +75,8 @@ function attachListeners(){
   // });
 
 
-  $('#create-comment').submit(function(e){
-
+  $('.create-comment').submit(function(e){
+    // debugger;
     $.ajax({
       url: path + "/create_comment",
       method: "POST",
