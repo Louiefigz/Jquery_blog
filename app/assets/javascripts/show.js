@@ -85,9 +85,10 @@ var replyComment="";
 }
 
 function showReply(reply){
+  // debugger;
   var replyComment =
   '<tr>'+
   '<td>' + '+'+  reply.content+ '</td>' +
-  '</td>';
+  '</tr>';
 return replyComment;
 }

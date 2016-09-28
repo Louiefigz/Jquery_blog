@@ -11,8 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap-sprockets
+
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require index
 //= require tags
 //= require show
 //= require listeners
+//= require_tree .

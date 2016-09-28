@@ -99,7 +99,7 @@ function attachListeners(){
     });
 
     $('#showComments').on("submit", '#createCommentReplyForm', function(e){
-      debugger;
+      // debugger;
 
 
       $.ajax({
