@@ -24,35 +24,23 @@ var showComments = function(post){
 
 var showComment = function(comment){
 
-  if(comment.replies.length <1){
     var comment_td =
-      '<table>'+
-      '<tr>'+
-      '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
-       comment.content +'</td>' + '<tr>' +
-       '<td>' + 'Author:  ' + comment.author_name +'</td>' +
-       '</tr>'+
-       '<td>' +
-       '<form id="createCommentReplyForm">'+
-         '<input type="text" placeholder="Comment Reply" class="new-reply">' +
-         '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
-         '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
-         '<input type="submit">' +
-       '</form>' +
+    '<div class="media">'+
+        '<a class="pull-left" href="#">'+
+            '<img class="media-object" src="http://placehold.it/64x64" alt="">' +
+        '</a>' +
 
-       '</td>';
-      comment_td += '</tr>' + '</table>' + '<br>';
-  } else {
-    var comment_td =
-      '<table>'+
-      '<tr>'+
-      '<td class="post-listener" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">'+
-       comment.content +'</td>' + '<tr>' +
-       '<td>' + 'Author:  ' + comment.author_name +'</td>' +
-       '</tr>';
+        '<div class="media-body" >' +
+            '<h4 class="media-heading" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">' + "Start Bootstrap" +
+                '<small>' + "August 25, 2014 at 9:30 PM" + '</small>' +
+            '</h4>' +
+            comment.content
+        '</div>' +
+    '</div>';
 
        comment_td += showReplies(comment.replies);
        comment_td +=
+       '<table>' +
        '<tr>' +
        '<td>' +
        '<form id="createCommentReplyForm">'+
@@ -64,19 +52,11 @@ var showComment = function(comment){
        '</td>' +
        '</tr>';
 
-       comment_td += '</table>' + '<br>';
-
-
-      //  debugger;
-
-  };
+       comment_td += '</table>';
   return comment_td;
-
 }
 
 function showReplies(comments){
-  // debugger;
-
 var replyComment="";
   comments.forEach(function(reply){
     replyComment+= showReply(reply);
@@ -87,8 +67,16 @@ var replyComment="";
 function showReply(reply){
   // debugger;
   var replyComment =
-  '<tr>'+
-  '<td>' + '+'+  reply.content+ '</td>' +
-  '</tr>';
+  '<div class="media">'+
+      '<a class="pull-left" href="#">' +
+          '<img class="media-object" src="http://placehold.it/64x64" alt="">' +
+      '</a>' +
+      '<div class="media-body">' +
+          '<h4 class="media-heading">' + "Nested Start Bootstrap" +
+              '<small>' + "August 25, 2014 at 9:30 PM" + '</small>' +
+          '</h4>' +
+          reply.content +
+      '</div>' +
+  '</div>';
 return replyComment;
 }
