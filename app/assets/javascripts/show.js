@@ -21,6 +21,10 @@ var showComments = function(post){
 }
 
 var showComment = function(comment){
+  // debugger;
+  var d = new Date(comment.created_at);
+  // console.log(comment.created_at);
+
 
     var comment_td =
     '<div>' + 
@@ -31,7 +35,7 @@ var showComment = function(comment){
 
         '<div class="media-body" >' +
             '<h4 class="media-heading" data-name=" ' + comment.content + ' " data-post-id=" ' + comment.id +' ">' + "Start Bootstrap" +
-                '<small>' + "August 25, 2014 at 9:30 PM" + '</small>' +
+                '<small>' + d + '</small>' +
             '</h4>' +
             comment.content
         '</div>' +
@@ -39,12 +43,13 @@ var showComment = function(comment){
 
        comment_td += showReplies(comment.replies);
        comment_td +=
-       '<br>' + 
+        '<br>' + 
+
        '<table>' +
        '<tr>' +
        '<td>' +
        '<form id="createCommentReplyForm">'+
-         '<input type="text" placeholder="Comment Reply" class="new-reply" data-commentId="' + comment.id + '">' +
+         '<input type="text" placeholder="Comment Reply" class="new-reply" data-commentId="' + comment.id + '"  required>' +
          '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
          '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
          '<input type="submit">' +
@@ -52,7 +57,7 @@ var showComment = function(comment){
        '</td>' +
        '</tr>';
 
-       comment_td += '</table>' + '</div>'+ '<br>';
+       comment_td += '</table>' + '</div>' + '<br>';
   return comment_td;
 }
 
@@ -66,6 +71,7 @@ var replyComment="";
 
 function showReply(reply){
   // debugger;
+  var d = new Date(reply.created_at);
   var replyComment =
    
   '<div class="media">'+
@@ -74,7 +80,7 @@ function showReply(reply){
       '</a>' +
       '<div class="media-body">' +
           '<h4 class="media-heading">' + "Nested Start Bootstrap" +
-              '<small>' + "August 25, 2014 at 9:30 PM" + '</small>' +
+              '<small>' + d + '</small>' +
           '</h4>' +
           reply.content +
       '</div>' +
