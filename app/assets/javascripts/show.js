@@ -4,10 +4,18 @@
 // debugger;
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN ){
   $.getJSON(path).done(function(response){
-    // debugger;
-    showComments(response.post);
+    showPost(response.post);
+    
   });
 }
+
+var showPost= function(post){
+  $('#post-name').html(post.name);
+  $('#post-user').html(post.author_name);
+  showComments(post);
+}
+
+
 
 
 var showComments = function(post){

@@ -69,7 +69,7 @@ var showTag = function(tag) {
   var tag =
     ' <li id="listed-tag-'+tag.id+'" data-name=" ' + tag.name+ ' " data-tag-id="'+tag.id+'">' +
        tag.name +
-      '<button class="delete_class" data-tag-id="'+tag.id+'">Remove</button>' +
+      '<button align="right" class="delete_class" data-tag-id="'+tag.id+'">Remove</button>' +
     '</li>';
 
   return tag;
