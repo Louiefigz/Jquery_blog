@@ -106,7 +106,7 @@ class PostsController < ApplicationController
     end
 
     def create_comment
-      binding.pry
+      # binding.pry
       post = Post.find(params[:id])
       comment = Comment.new(comment_params)
       comment.update(author_id: current_user.id, post_id: params[:comment][:post_id].to_i )

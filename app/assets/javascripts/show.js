@@ -12,9 +12,7 @@ if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN
 
 var showComments = function(post){
   var dom ="";
-  // debugger;
   post.comments.forEach(function(comment){
-    // debugger;
     if(comment.parent_id == null){
       dom+= (showComment(comment));
     }
@@ -25,6 +23,7 @@ var showComments = function(post){
 var showComment = function(comment){
 
     var comment_td =
+    '<div>' + 
     '<div class="media">'+
         '<a class="pull-left" href="#">'+
             '<img class="media-object" src="http://placehold.it/64x64" alt="">' +
@@ -40,6 +39,7 @@ var showComment = function(comment){
 
        comment_td += showReplies(comment.replies);
        comment_td +=
+       '<br>' + 
        '<table>' +
        '<tr>' +
        '<td>' +
@@ -52,7 +52,7 @@ var showComment = function(comment){
        '</td>' +
        '</tr>';
 
-       comment_td += '</table>';
+       comment_td += '</table>' + '</div>'+ '<br>';
   return comment_td;
 }
 
@@ -67,6 +67,7 @@ var replyComment="";
 function showReply(reply){
   // debugger;
   var replyComment =
+   
   '<div class="media">'+
       '<a class="pull-left" href="#">' +
           '<img class="media-object" src="http://placehold.it/64x64" alt="">' +
@@ -77,6 +78,6 @@ function showReply(reply){
           '</h4>' +
           reply.content +
       '</div>' +
-  '</div>';
+  '</div>' ;
 return replyComment;
 }
