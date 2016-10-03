@@ -1,8 +1,12 @@
 
 // Function below checks to see if we are on a shwo page and if so... we are going to display the following information.
 // This may not be a great way to return a show page if I plan on building this out to have many other show pages.
-// debugger;\
+
+
+if (path.split('/').slice(-1) == "edit"){
 var path = path.split('/').slice(0, -1).join('/')
+}
+
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN ){
   $.getJSON(path).done(function(response){
     showPost(response.post);
