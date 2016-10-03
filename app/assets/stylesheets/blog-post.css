@@ -15,5 +15,9 @@ footer {
 .delete_class{
   position: absolute;
   right: 20px
+}
 
+textarea {
+    width: 700px;
+    height: 150px;
 }
