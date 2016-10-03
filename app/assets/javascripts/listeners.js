@@ -99,9 +99,7 @@ function attachListeners(){
     });
 
     $('#showComments').on("submit", '#createCommentReplyForm', function(e){
-    
       e.preventDefault();
-
       $.ajax({
         url: path + '/create_comment',
         method: "POST",
@@ -119,6 +117,12 @@ function attachListeners(){
       });
     });
 
+    $('.editPage').click(function(){
+      // debugger;
+      window.location.replace(path + '/edit');
+    })
+
+    $('.editNameForm').find("input[type='text']").attr("placeholder", "Hello");
 
 
 

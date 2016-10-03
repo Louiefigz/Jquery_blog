@@ -1,4 +1,4 @@
-<%= form_for(@post) do |f| %>
+<!-- <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -35,4 +35,208 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+<% end %> -->
+
+
+
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <h3>Name:</h3>
+  <%= @post.name %>
+  <h3>Content:</h3>
+  <%= @post.content %><br><br>
+  <button id="tag-listener">Tags:</button>
+  <button id="remove-tag">Hide Tags:</button> - <strong id="numberoftags"></strong>
+  <div id='tags'></div>
+
+<form id="create-tag">
+  <input type="text" placeholder="create a tag here"  id="new-tag">
+  <input type="submit" value="create">
+</form>
+</p>
+
+<button id="showCommentForm">Create Comments: </button>
+<button id="hideCommentForm">Hide Comment Form</button><br><br>
+
+<form id="create-comment">
+  <input type="text" placeholder="Create Comment" id="new-comment">
+  <input type="submit">
+</form>
+
+<div id="showComments"></div>
+
+
+
+<%= link_to 'Edit | ', edit_post_path(@post) if @post.user.id == current_user.id %>
+<%= link_to 'Back', posts_path %> -->
+
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-8"><br>
+
+                <!-- Blog Post -->
+
+                <!-- Title -->
+                <button class="editPage">Edit Page</button>
+
+                <h1 id="post-name"></h1>
+                <form class="editNameForm">
+                  <input type="text" id="edit-name">
+                  <input type="submit">
+                </form>
+
+
+
+                <!-- Author -->
+                <p class="lead">
+                    by <%=@post.user.email%>
+                </p>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+
+                <hr>
+
+                <!-- Post Content -->
+                <p class="lead" class="post-content"><%= @post.content%> </p>
+
+                <hr>
+
+                <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form class="create-comment">
+                        <div class="form-group">
+                                <textarea class="form-control"
+                                          rows="3" type="text"
+                                          placeholder="Create Comment"
+                                          id="new-comment"></textarea>
+                              <input type="hidden" value="<%=@post.id%>" id="post_id">
+                              </div>
+                          <input type="submit" class="btn btn-primary">
+                    </form>
+                </div>
+
+                <hr>
+
+                <!-- Posted Comments -->
+                <div id="showComments"></div>
+                <!-- Comment -->
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div>
+                    <!-- /.input-group -->
+                </div>
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <div class="row">
+                        <div class="col-lg-8">
+
+
+                            <button id="tag-listener">Tags:</button>
+                              <button id="remove-tag">Hide Tags:</button> - <strong id="numberoftags"></strong>
+
+                              <ul class="list-group">
+                                <div id='tags'></div>
+                              </ul>
+
+                            <form id="create-tag">
+                              <input type="text" placeholder="create a tag here"  id="new-tag">
+                              <input type="submit" value="create">
+                            </form>
+
+
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>Side Widget Well</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->

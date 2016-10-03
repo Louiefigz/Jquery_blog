@@ -1,11 +1,15 @@
 
 // Function below checks to see if we are on a shwo page and if so... we are going to display the following information.
 // This may not be a great way to return a show page if I plan on building this out to have many other show pages.
-// debugger;
+// debugger;\
+var path = path.split('/').slice(0, -1).join('/')
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN ){
   $.getJSON(path).done(function(response){
     showPost(response.post);
-    
+    // debugger;
+    $('.editNameForm').find("input[type='text']").attr("placeholder", response.post.name);
+
+
   });
 }
 
@@ -35,7 +39,7 @@ var showComment = function(comment){
 
 
     var comment_td =
-    '<div>' + 
+    '<div>' +
     '<div class="media">'+
         '<a class="pull-left" href="#">'+
             '<img class="media-object" src="http://placehold.it/64x64" alt="">' +
@@ -51,7 +55,7 @@ var showComment = function(comment){
 
        comment_td += showReplies(comment.replies);
        comment_td +=
-        '<br>' + 
+        '<br>' +
 
        '<table>' +
        '<tr>' +
@@ -81,7 +85,7 @@ function showReply(reply){
   // debugger;
   var d = new Date(reply.created_at);
   var replyComment =
-   
+
   '<div class="media">'+
       '<a class="pull-left" href="#">' +
           '<img class="media-object" src="http://placehold.it/64x64" alt="">' +
