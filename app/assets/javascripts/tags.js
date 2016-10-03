@@ -67,9 +67,9 @@ function deleteTag(){
 var showTag = function(tag) {
 // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var tag =
-    ' <li id="listed-tag-'+tag.id+'" data-name=" ' + tag.name+ ' " data-tag-id="'+tag.id+'">' +
+    '<li class="list-group-item" id="listed-tag-'+tag.id+'" data-name=" ' + tag.name+ ' " data-tag-id="'+tag.id+'">' +
        tag.name +
-      '<button align="right" class="delete_class" data-tag-id="'+tag.id+'">Remove</button>' +
+      '<button class="delete_class" data-tag-id="'+tag.id+'">X</button>' +
     '</li>';
 
   return tag;

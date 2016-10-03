@@ -76,7 +76,7 @@ function attachListeners(){
 
 
   $('.create-comment').submit(function(e){
-   
+
     $.ajax({
       url: path + "/create_comment",
       method: "POST",
@@ -99,8 +99,8 @@ function attachListeners(){
     });
 
     $('#showComments').on("submit", '#createCommentReplyForm', function(e){
-      // debugger;
-
+    
+      e.preventDefault();
 
       $.ajax({
         url: path + '/create_comment',
@@ -112,9 +112,10 @@ function attachListeners(){
           "post_id": parseInt($(this).find("#post_id").val())
           }
         }
-      }).done(function(resp){
-        debugger;
-          console.log('comment reply');
+      }).done(function(){
+        $.getJSON(path).done(function(response){
+          showPost(response.post);
+        });
       });
     });
 
