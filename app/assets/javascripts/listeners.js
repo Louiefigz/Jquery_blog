@@ -114,7 +114,7 @@ function attachListeners(){
         }
       }).done(function(){
         $.getJSON(path).done(function(response){
-          showPost(response.post);
+          showPagePost(response.post);
         });
       });
     });

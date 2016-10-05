@@ -1,29 +1,102 @@
-<h1>Listing posts</h1>
+<%= render "layouts/navbar" %>
 
-<h4>Click on a post below!</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
 
-<div id="showPosts"></div><br><br>
-
-<button id="postsIWrote">See only My Posts</button>
-<button id="closepostsIwrote">Close Posts I've Written</button> - <strong id="mypostnumber"></strong>
-<!-- <h3>Posts I've written</h3> -->
-<div id="myposts"></div><br>
-
-
+              <h1 class="page-header">
+                  All Posts
+                  <small>Click on a post below!</small>
+              </h1>
 
 
-<button id="postsTheyWrote">See Everyone else's Posts</button>
-<button id="closepostsTheywrote">Close Everyone else wrote</button>- <strong id="theirnumber"></strong>
-<!-- <h3>Posts Everyone else wrote</h3> -->
-<div id="restofposts"></div>
 
-<br><br><button id="new-post-form">Create a new Post</button><br>
-<div>
-  <form id="create-post">
-    <h3>Create your post</h3>
-    <input type="text" placeholder="Post Name" id="post-name"><br><br>
-    <textarea type="text" placeholder="Post Content" id="post-content"></textarea><br><br>
-    <input type="text" placeholder="Create a tag(optional)" id="tag-name">
-    <input type="submit" value="create">
-  </form>
+      <div id="showPosts"></div><br><br>
+
+      <button id="postsIWrote">See only My Posts</button>
+      <button id="closepostsIwrote">Close Posts I've Written</button> - <strong id="mypostnumber"></strong>
+      <!-- <h3>Posts I've written</h3> -->
+      <div id="myposts"></div><br>
+
+
+
+
+      <button id="postsTheyWrote">See Everyone else's Posts</button>
+      <button id="closepostsTheywrote">Close Everyone else wrote</button>- <strong id="theirnumber"></strong>
+      <!-- <h3>Posts Everyone else wrote</h3> -->
+      <div id="restofposts"></div>
+
+      <br><br><button id="new-post-form">Create a new Post</button><br>
+      <div>
+        <form id="create-post">
+          <h3>Create your post</h3>
+          <input type="text" placeholder="Post Name" id="post-name"><br><br>
+          <textarea type="text" placeholder="Post Content" id="post-content"></textarea><br><br>
+          <input type="text" placeholder="Create a tag(optional)" id="tag-name">
+          <input type="submit" value="create">
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Blog Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Blog Search Well -->
+            <div class="well">
+                <h4>Blog Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+                <!-- /.input-group -->
+            </div>
+
+            <!-- Blog Categories Well -->
+            <div class="well">
+                <h4>Blog Categories</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                            <li><a href="#">Category Name</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <!-- Side Widget Well -->
+            <div class="well">
+                <h4>Side Widget Well</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+            </div>
+
+        </div>
+
+  </div>
 </div>
