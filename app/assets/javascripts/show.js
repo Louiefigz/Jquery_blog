@@ -12,9 +12,7 @@ if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN
     showPost(response.post);
     // debugger;
     $('.editNameForm').find("input[type='text']").attr("placeholder", response.post.name);
-    $('.post-content').find("textarea").attr("placeholder", response.post.content);
-
-
+    $('.editNameForm').find("textarea").attr("placeholder", response.post.content);
   });
 }
 

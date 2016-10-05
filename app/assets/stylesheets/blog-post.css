@@ -21,3 +21,14 @@ textarea {
     width: 750px;
     height: 150px;
 }
+
+.editPage{
+  position: absolute;
+  padding-left: 10px;
+  top: 48px;
+
+}
+
+.editPage:hover{
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);}

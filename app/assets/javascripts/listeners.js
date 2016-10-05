@@ -122,7 +122,13 @@ function attachListeners(){
       window.location.replace(path + '/edit');
     })
 
-    $('.editNameForm').find("input[type='text']").attr("placeholder", "Hello");
+    // $('.editNameForm').click(function(e){
+    //   e.preventDefault();
+    //   $.ajax({})
+    //
+    //
+    //
+    // })
 
 
 
