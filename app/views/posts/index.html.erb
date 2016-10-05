@@ -19,10 +19,10 @@
 
 
 
+<!--
 
 
-
-      <br><br><button id="new-post-form">Create a new Post</button><br>
+      <button id="new-post-form">Create a new Post</button>
       <div>
         <form id="create-post">
           <h3>Create your post</h3>
@@ -31,7 +31,7 @@
           <input type="text" placeholder="Create a tag(optional)" id="tag-name">
           <input type="submit" value="create">
         </form>
-      </div>
+      </div> -->
 
     </div>
 
@@ -70,8 +70,15 @@
 
             <!-- Side Widget Well -->
             <div class="well">
-                <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+              <button id="new-post-form">Create a new Post</button>
+
+              <form id="create-post">
+                <h3>Create your post</h3>
+                <input type="text" placeholder="Post Name" id="post-name"><br><br>
+                <textarea type="text" placeholder="Post Content" id="post-content"></textarea><br><br>
+                <input type="text" placeholder="Create a tag(optional)" id="tag-name">
+                <input type="submit" value="create">
+              </form>
             </div>
 
         </div>

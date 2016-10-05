@@ -21,6 +21,11 @@ textarea {
     width: 750px;
     height: 150px;
 }
+
+#create-post textarea[type="text"]{
+  width: 300px;
+}
+
 .editNameForm input[type="text"]{
   width: 400px;
   height: 50px;
