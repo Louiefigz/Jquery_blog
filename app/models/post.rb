@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
   validates_presence_of :name, :content
 
-  before_save :author_id
+  # before_save :author_id
 
   # accepts_nested_attributes_for :tag_ids
 
@@ -26,10 +26,10 @@ def tag_attributes=(attributes)
 
 end
 
-def author_id
-  binding.pry
-
-end
+# def author_id
+#   binding.pry
+#
+# end
 
 
 end

@@ -11,8 +11,8 @@ if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN
   $.getJSON(path).done(function(response){
     showPost(response.post);
     // debugger;
-    $('.editNameForm').find("input[type='text']").attr("placeholder", response.post.name);
-    $('.editNameForm').find("textarea").attr("placeholder", response.post.content);
+    $('.editNameForm').find("input[type='text']").attr("value", response.post.name);
+    $('#edit-content').val(response.post.content);
   });
 }
 

@@ -8,6 +8,8 @@ $(function(){
   $('#closepostsTheywrote').hide();
   $('#create-comment').hide();
   $('#hideCommentForm').hide();
+  $('.hideEditForm').hide();
+  $('#submit-button').hide();
   // $('#createCommentReplyForm').hide();
   attachListeners();
 // This loads the posts for the index page //
@@ -119,16 +121,28 @@ function attachListeners(){
 
     $('.editPage').click(function(){
       // debugger;
-      window.location.replace(path + '/edit');
+      // window.location.replace(path + '/edit');
+      $('.hideEditContent').hide();
+      $('.editPage').hide();
+      $('#submit-button').show();
+      $('.hideEditForm').show();
     })
 
-    // $('.editNameForm').click(function(e){
-    //   e.preventDefault();
-    //   $.ajax({})
-    //
-    //
-    //
-    // })
+    $('.editNameForm').submit(function(e){
+      // debugger;
+
+      $.ajax({
+        url: path,
+        method: "PATCH",
+        data:{
+          "post":{
+            "name": $('#edit-name').val(),
+            "content": $('#edit-content').val()
+          }
+        }
+      })
+    })
+
 
 
 

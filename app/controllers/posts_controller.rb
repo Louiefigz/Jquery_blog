@@ -61,6 +61,9 @@ class PostsController < ApplicationController
 
 
     def update
+      
+      post = Post.find(params[:id])
+      post.update(post_params)
       respond_to do |format|
         # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
 
