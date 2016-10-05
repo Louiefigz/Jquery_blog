@@ -24,6 +24,12 @@ var showPagePost= function(post){
   showComments(post);
 }
 
+function deleteButton(path){
+  // debugger;
+  var deletehtml =
+  '<a  data-method="delete" href=" '+ path+ '" class="myButton">' + 'Delete Post' + '</a>' + '<br>' + '<br>';
+  return deletehtml;
+}
 
 
 

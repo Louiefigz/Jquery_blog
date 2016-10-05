@@ -1,6 +1,6 @@
-<!-- <p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
-<p>
+<!-- <p>
   <h3>Name:</h3>
   <%= @post.name %>
   <h3>Content:</h3>
@@ -23,12 +23,10 @@
   <input type="submit">
 </form>
 
-<div id="showComments"></div>
+<div id="showComments"></div> -->
 
 
 
-<%= link_to 'Edit | ', edit_post_path(@post) if @post.user.id == current_user.id %>
-<%= link_to 'Back', posts_path %> -->
 
 
 
@@ -46,6 +44,9 @@
                 <!-- Blog Post -->
 
                 <!-- Title -->
+
+                <div id="deleteButton"></div>
+                <!-- <a align-content="center" href="#" class="myButton">Delete Post</a><br> -->
 
                 <table>
                   <tr>
@@ -118,6 +119,10 @@
                 <!-- Posted Comments -->
                 <div id="showComments"></div>
                 <!-- Comment -->
+
+
+                <!-- <%= link_to 'Edit | ', edit_post_path(@post) if @post.user.id == current_user.id %> -->
+                <%= link_to 'Back', posts_path %>
 
             </div>
 

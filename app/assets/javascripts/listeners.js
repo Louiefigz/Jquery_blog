@@ -126,6 +126,7 @@ function attachListeners(){
       $('.editPage').hide();
       $('#submit-button').show();
       $('.hideEditForm').show();
+      $('#deleteButton').html(deleteButton(path));
     })
 
     $('.editNameForm').submit(function(e){
