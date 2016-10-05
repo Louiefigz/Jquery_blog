@@ -140,7 +140,9 @@ function attachListeners(){
             "content": $('#edit-content').val()
           }
         }
-      })
+      }).done(function(resp){
+        debugger;
+      });
     })
 
 

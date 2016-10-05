@@ -18,6 +18,7 @@ if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN
 
 var showPost= function(post){
   $('#post-name').html(post.name);
+  $('#post-content').html(post.content);
   $('#post-user').html(post.author_name);
   showComments(post);
 }

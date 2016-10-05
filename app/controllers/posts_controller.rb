@@ -61,12 +61,11 @@ class PostsController < ApplicationController
 
 
     def update
-      
+
       post = Post.find(params[:id])
-      post.update(post_params)
+    
       respond_to do |format|
         # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
-
         if @post.update(post_params)
           format.html { redirect_to @post, notice: 'Post was successfully updated.' }
           format.json { head :no_content }

@@ -77,8 +77,21 @@
 
                 <!-- Title -->
 
-                <h1 id="post-name"></h1>
-                <button class="editPage">Edit Page</button>
+                <table>
+                  <tr>
+                <td><h1 class="hideEditContent" id="post-name"></h1></td>
+                <td><img class="editPage" width="40" height="" src="http://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/edit_property.png" /></td>
+              </tr>
+            </table>
+
+                <!-- Edit Posts Name Form  -->
+
+                <div class="hideEditForm">
+                  <form class="editNameForm">
+                    <input type="text" id="edit-name"><br>
+                    <input type="submit" class="myButton">
+                  </form>
+                </div>
 
                 <!-- Author -->
                 <p class="lead">
@@ -98,7 +111,18 @@
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead"><%= @post.content%> </p>
+                <div class="hideEditContent">
+                <p class="lead"  id="post-content"></p>
+              </div>
+                <!-- Edit Content form  -->
+                <div class="hideEditForm">
+                  <p class="lead" >
+                    <form class="editNameForm">
+                      <textarea id="edit-content"></textarea><br>
+                      <input  class="myButton" type="submit"/>
+                    </form>
+                  </p>
+                </div>
 
                 <hr>
 
