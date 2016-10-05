@@ -11,6 +11,9 @@ if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] !== ""
   $.getJSON(path).done(function(response){
 
     showPagePost(response.post);
+    if (response.post.user.id !== response.post.current_user_id){
+      $('.editPage').hide();
+    }
     // debugger;
     $('.editNameForm').find("input[type='text']").attr("value", response.post.name);
     $('#edit-content').val(response.post.content);
@@ -25,7 +28,7 @@ var showPagePost= function(post){
 }
 
 function deleteButton(path){
-  // debugger;
+
   var deletehtml =
   '<a  data-method="delete" href=" '+ path+ '" class="myButton">' + 'Delete Post' + '</a>' + '<br>' + '<br>';
   return deletehtml;
