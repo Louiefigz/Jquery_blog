@@ -10,8 +10,7 @@ function reloadPost(path){
   $.getJSON(path).done(function(response){
 
     createPostObjects(response);
-    showPosts(
-    );
+    showPosts(posts);
     $('#mypostnumber').html($('#myposts .post-listener').length);
 
     $('#create-post input[type=text]').val('');
@@ -26,15 +25,17 @@ function reloadPost(path){
 }
 
 var createPostObjects = function(response) {
-  // posts =[]
+  posts =[]
   myPosts =[]
   restPosts =[]
+
   response.posts.forEach(function(post) {
+
     posts.push(new Post(post.id, post.name, post.user.id, post.current_user_id))
   })
 
-  // debugger;
 
+  showPosts(posts);
   showMyPosts();
   showRestPosts();
 }
@@ -105,10 +106,11 @@ function showMyPosts(){
 }
 
 function getAllPosts(){
-
 $.getJSON(path).done(function(response){
+
   createPostObjects(response)
-  showPosts(posts);
+
+  // showPosts(posts);
   $('#mypostnumber').val('')
   $('#mypostnumber').html(posts.length - restPosts.length + " posts")
   $('#theirnumber').html(posts.length - myPosts.length + " posts")
@@ -118,15 +120,18 @@ $.getJSON(path).done(function(response){
 
 
 var showPosts = function(posts) {
+
   var dom = "";
     posts.forEach(function(post) {
       dom += (showPost(post, post.current_user_id));
-    });
+    })
+
   $("#showPosts").html(dom);
 }
 
-var showPost = function(post, current_user_id) {
-  // debugger;
+function showPost(post, current_user_id) {
+
+
   // return $('<li>', {'data-name': tag.name, 'data-tagid': tag.id, text: tag.name  });
   var post_td =
     '<table>'+
@@ -142,5 +147,6 @@ var showPost = function(post, current_user_id) {
           '<td>'+  '<a data-method="delete" href="/posts/'+post.id+' " >' + " Destroy" +'</td>';
       }
     post_td += '</tr>' + '</table>' + '<br>';
+
   return post_td;
 }

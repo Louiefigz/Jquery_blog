@@ -7,16 +7,17 @@ if (path.split('/').slice(-1) == "edit"){
 var path = path.split('/').slice(0, -1).join('/')
 }
 
-if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] != NaN ){
+if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] !== "" ){
   $.getJSON(path).done(function(response){
-    showPost(response.post);
+
+    showPagePost(response.post);
     // debugger;
     $('.editNameForm').find("input[type='text']").attr("value", response.post.name);
     $('#edit-content').val(response.post.content);
   });
 }
 
-var showPost= function(post){
+var showPagePost= function(post){
   $('#post-name').html(post.name);
   $('#post-content').html(post.content);
   $('#post-user').html(post.author_name);
