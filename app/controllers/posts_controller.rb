@@ -6,8 +6,8 @@ class PostsController < ApplicationController
     # GET /posts
     # GET /posts.json
     def index
+      @posts= Post.order('id DESC')
 
-      @posts = Post.all
 
       respond_to do |f|
         f.html { render :index }
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
     def update
 
       post = Post.find(params[:id])
-    
+
       respond_to do |format|
         # tag = Tag.find_or_create_by(name: params[:post][:new_tag][:tag][:name])
         if @post.update(post_params)
@@ -136,10 +136,6 @@ class PostsController < ApplicationController
 
       def comment_params
         params.require(:comment).permit(:content, :parent_id, :post_id)
-      end
-
-      def tag_params
-        params.permit(:name, :id)
       end
 
 end
