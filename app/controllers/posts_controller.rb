@@ -3,8 +3,6 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy, :create_comment]
     serialization_scope :view_context
 
-    # GET /posts
-    # GET /posts.json
     def index
       @posts= Post.order('id DESC')
       respond_to do |f|
@@ -23,7 +21,7 @@ class PostsController < ApplicationController
       end
     end
 
-    # GET /posts/new
+  
     def new
 
       @post = Post.new
@@ -109,11 +107,8 @@ class PostsController < ApplicationController
           if !@post.comments.include?(comment)
             @post.comments << comment
           end
-        comment.save
-          if comment.save
-            render json: comment
-          end
-
+      comment.save
+      render json: comment
     end
 
     private

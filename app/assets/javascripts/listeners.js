@@ -1,15 +1,18 @@
 $(function(){
-  // These selectors are located in the show show page for a post //
+  //SHOW
   $('#remove-tag').hide();
   $('#create-tag').hide();
+  $('#create-comment').hide();
+  $('.hideEditForm').hide();
+  $('#submit-button').hide();
+
+  //INDEX
   $('#myposts').hide();
   $('#restofposts').hide();
   $('#closepostsIwrote').hide();
   $('#closepostsTheywrote').hide();
-  $('#create-comment').hide();
-  $('#hideCommentForm').hide();
-  $('.hideEditForm').hide();
-  $('#submit-button').hide();
+
+
   // $('#createCommentReplyForm').hide();
   attachListeners();
 // This loads the posts for the index page //
@@ -60,21 +63,8 @@ function attachListeners(){
   $('#showCommentForm').click(function(){
     $('#create-comment').show();
     $('#showCommentForm').hide();
-    $('#hideCommentForm').show();
   });
 
-  $('#hideCommentForm').click(function(){
-    $('#hideCommentForm').hide();
-    $('#showCommentForm').show();
-    $('#create-comment').hide();
-  });
-
-  //
-  // $('#showComments').on('click', '#showCommentReplyForm', function(){
-  //   debugger;
-  //
-  //   console.log('form button clicked');
-  // });
 
 
   $('.create-comment').submit(function(e){
@@ -92,7 +82,6 @@ function attachListeners(){
         $.getJSON(path).done(function(response){
           showComments(response.post);
           $('#new-comment').val('');
-          $('#hideCommentForm').hide();
           $('#showCommentForm').show();
           $('#create-comment').hide();
         });
