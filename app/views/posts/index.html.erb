@@ -1,62 +1,62 @@
 <%= render "layouts/navbar" %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-8">
-        <h1 class="page-header">
-            All Posts
-            <small>Click on a post below!</small>
-        </h1>
-      <div id="showPosts"></div><br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+          <h1 class="page-header">
+              All Posts
+              <small>Click on a post below!</small>
+          </h1>
+        <div id="showPosts"></div><br><br>
+      </div>
+
+      <!-- Blog Sidebar Widgets Column -->
+          <div class="col-md-4">
+
+              <!-- Blog Search Well -->
+              <div class="well">
+                  <h4>Blog Search</h4>
+                  <div class="input-group">
+                      <input type="text" class="form-control">
+                      <span class="input-group-btn">
+                          <button class="btn btn-default" type="button">
+                              <span class="glyphicon glyphicon-search"></span>
+                          </button>
+                      </span>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+
+              <!-- Blog Categories Well -->
+              <div class="well">
+
+                  <button id="postsIWrote">See only My Posts</button>
+                  <button id="closepostsIwrote">Close Posts I've Written</button> - <strong id="mypostnumber"></strong>
+                  <div id="myposts"></div><br>
+              </div>
+
+              <div class="well">
+
+                <button id="postsTheyWrote">See Everyone else's Posts</button>
+                <button id="closepostsTheywrote">Close Everyone else wrote</button>- <strong id="theirnumber"></strong>
+                <!-- <h3>Posts Everyone else wrote</h3> -->
+                <div id="restofposts"></div>
+              </div>
+
+              <!-- Side Widget Well -->
+              <div class="well">
+                <button id="new-post-form">Create a new Post</button>
+
+                <form id="create-post">
+                  <h3>Create your post</h3>
+                  <input type="text" placeholder="Post Name" id="post-name"><br><br>
+                  <textarea type="text" placeholder="Post Content" id="post-content"></textarea><br><br>
+                  <input type="text" placeholder="Create a tag(optional)" id="tag-name">
+                  <input type="submit" value="create">
+                </form>
+              </div>
+
+          </div>
+
     </div>
-
-    <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Blog Search Well -->
-            <div class="well">
-                <h4>Blog Search</h4>
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                </div>
-                <!-- /.input-group -->
-            </div>
-
-            <!-- Blog Categories Well -->
-            <div class="well">
-
-                <button id="postsIWrote">See only My Posts</button>
-                <button id="closepostsIwrote">Close Posts I've Written</button> - <strong id="mypostnumber"></strong>
-                <div id="myposts"></div><br>
-            </div>
-
-            <div class="well">
-
-              <button id="postsTheyWrote">See Everyone else's Posts</button>
-              <button id="closepostsTheywrote">Close Everyone else wrote</button>- <strong id="theirnumber"></strong>
-              <!-- <h3>Posts Everyone else wrote</h3> -->
-              <div id="restofposts"></div>
-            </div>
-
-            <!-- Side Widget Well -->
-            <div class="well">
-              <button id="new-post-form">Create a new Post</button>
-
-              <form id="create-post">
-                <h3>Create your post</h3>
-                <input type="text" placeholder="Post Name" id="post-name"><br><br>
-                <textarea type="text" placeholder="Post Content" id="post-content"></textarea><br><br>
-                <input type="text" placeholder="Create a tag(optional)" id="tag-name">
-                <input type="submit" value="create">
-              </form>
-            </div>
-
-        </div>
-
   </div>
-</div>
