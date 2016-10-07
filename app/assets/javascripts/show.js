@@ -4,7 +4,7 @@
 
 
 if (path.split('/').slice(-1) == "edit"){
-var path = path.split('/').slice(0, -1).join('/')
+  var path = path.split('/').slice(0, -1).join('/')
 }
 
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] !== "" ){

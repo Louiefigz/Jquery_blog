@@ -2,7 +2,6 @@ $(function(){
   //SHOW
   $('#remove-tag').hide();
   $('#create-tag').hide();
-  $('#create-comment').hide();
   $('.hideEditForm').hide();
   $('#submit-button').hide();
 
@@ -11,12 +10,10 @@ $(function(){
   $('#restofposts').hide();
   $('#closepostsIwrote').hide();
   $('#closepostsTheywrote').hide();
-
-
-  // $('#createCommentReplyForm').hide();
   attachListeners();
 // This loads the posts for the index page //
   getAllPosts()
+//Show page tags
   jsonTags()
 
 })
@@ -60,10 +57,7 @@ function attachListeners(){
     });
   });
 
-  $('#showCommentForm').click(function(){
-    $('#create-comment').show();
-    $('#showCommentForm').hide();
-  });
+
 
 
 
@@ -82,8 +76,6 @@ function attachListeners(){
         $.getJSON(path).done(function(response){
           showComments(response.post);
           $('#new-comment').val('');
-          $('#showCommentForm').show();
-          $('#create-comment').hide();
         });
       });
       e.preventDefault();
@@ -109,7 +101,6 @@ function attachListeners(){
     });
 
     $('.editPage').click(function(){
-      // debugger;
       // window.location.replace(path + '/edit');
       $('.hideEditContent').hide();
       $('.editPage').hide();
@@ -119,8 +110,6 @@ function attachListeners(){
     })
 
     $('.editNameForm').submit(function(e){
-      // debugger;
-
       $.ajax({
         url: path,
         method: "PATCH",
@@ -130,7 +119,7 @@ function attachListeners(){
             "content": $('#edit-content').val()
           }
         }
-      }).done(function(resp){
+      }).success(function(){
         debugger;
       });
     })
@@ -196,4 +185,4 @@ function attachListeners(){
     });
 
 
-    };
+  };

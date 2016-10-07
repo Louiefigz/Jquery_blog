@@ -1,77 +1,3 @@
-<!-- <%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-
-  <h5>Choose a tag(optional)</h5>
-  <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
-<%= f.fields_for :tag do |u|%>
-
-  <h5>Create a new tag(optional)</h5>
-
-      <%= u.label "tag name"%>
-      <%= u.text_field :name %>
-
-  <% end %>
-
-
-
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %> -->
-
-
-
-<!-- <p id="notice"><%= notice %></p>
-
-<p>
-  <h3>Name:</h3>
-  <%= @post.name %>
-  <h3>Content:</h3>
-  <%= @post.content %><br><br>
-  <button id="tag-listener">Tags:</button>
-  <button id="remove-tag">Hide Tags:</button> - <strong id="numberoftags"></strong>
-  <div id='tags'></div>
-
-<form id="create-tag">
-  <input type="text" placeholder="create a tag here"  id="new-tag">
-  <input type="submit" value="create">
-</form>
-</p>
-
-<button id="showCommentForm">Create Comments: </button>
-<button id="hideCommentForm">Hide Comment Form</button><br><br>
-
-<form id="create-comment">
-  <input type="text" placeholder="Create Comment" id="new-comment">
-  <input type="submit">
-</form>
-
-<div id="showComments"></div>
-
-
-
-<%= link_to 'Edit | ', edit_post_path(@post) if @post.user.id == current_user.id %>
-<%= link_to 'Back', posts_path %> -->
-
-
 
 
     <!-- Navigation -->
@@ -86,7 +12,11 @@
             <div class="col-lg-8"><br>
 
 
-
+              <ul>
+              <% @post.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
                 <!-- Blog Post -->
 
                 <!-- Title -->
