@@ -1,14 +1,12 @@
 class PostsController < ApplicationController
 
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
+    before_action :set_post, only: [:show, :edit, :update, :destroy, :create_comment]
     serialization_scope :view_context
 
     # GET /posts
     # GET /posts.json
     def index
       @posts= Post.order('id DESC')
-
-
       respond_to do |f|
         f.html { render :index }
         f.json { render json: @posts }
@@ -33,7 +31,6 @@ class PostsController < ApplicationController
     end
 
     def edit
-      # binding.pry
       redirect_to root_path if @post.user.id != current_user.id
       @tag= @post.tags.build
     end
@@ -94,33 +91,29 @@ class PostsController < ApplicationController
     end
 
     def create_tag
-
       if params[:name] != ''
         tag = Tag.find_or_create_by(name: params[:name].downcase.strip)
         post = Post.find(params[:id])
-        if !post.tags.include?(tag)
-          post.tags << tag
-          render json: post
-        end
+          if !post.tags.include?(tag)
+            post.tags << tag
+            render json: post
+          end
       else
         render status: 404, plain: 'Must have a name!'
       end
     end
 
     def create_comment
-      # binding.pry
-      post = Post.find(params[:id])
       comment = Comment.new(comment_params)
       comment.update(author_id: current_user.id, post_id: params[:comment][:post_id].to_i )
-          if !post.comments.include?(comment)
-            post.comments << comment
+          if !@post.comments.include?(comment)
+            @post.comments << comment
           end
-      comment.save
+        comment.save
           if comment.save
             render json: comment
           end
 
-      # post.comments.find_or_create_by(content: params[:comment].strip, author_id: current_user.id)
     end
 
     private

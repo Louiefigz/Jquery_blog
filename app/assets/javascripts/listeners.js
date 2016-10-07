@@ -199,7 +199,8 @@ function attachListeners(){
             "tag": $('#tag-name').val()
           }
         }
-      }).done(function(){
+      }).done(function(data){
+        // debugger;
         reloadPost(path);
       });
       e.preventDefault()
