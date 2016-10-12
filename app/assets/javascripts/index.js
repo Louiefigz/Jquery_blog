@@ -6,36 +6,38 @@ var posts= [];
 var myPosts=[];
 var restPosts=[];
 
-
-function reloadPost(path){
+// This function is making a call to the backend for all posts as the page is loading.
+function getAllPosts(){
   $.getJSON(path).done(function(response){
+    createPostObjects(response)
+    $('#mypostnumber').val('')
+    $('#mypostnumber').html(posts.length - restPosts.length + " posts")
+    $('#theirnumber').html(posts.length - myPosts.length + " posts")
+    $('.w3-container').fadeOut();
 
-    createPostObjects(response);
-    showPosts(posts);
+  });
+}
+
+// This function is being used after an ajax request and no page refresh
+function reloadPost(path){
+
+    getAllPosts();
     $('#mypostnumber').html($('#myposts .post-listener').length);
-
     $('#create-post input[type=text]').val('');
     $('#create-post textarea').val('');
     $('#create-post').hide();
     // deleteTag()
     $('#new-post-form').show();
 
-    posts = [];
-    getAllPosts();
-  });
 }
 
 var createPostObjects = function(response) {
   posts =[]
   myPosts =[]
   restPosts =[]
-
   response.posts.forEach(function(post) {
-
     posts.push(new Post(post.id, post.name, post.content, post.user.id, post.current_user_id))
   })
-
-
   showPosts(posts);
   showMyPosts();
   showRestPosts();
@@ -105,17 +107,6 @@ function showMyPosts(){
   $('#myposts table').remove();
   $("#myposts").html(dom);
 
-}
-
-function getAllPosts(){
-  $.getJSON(path).done(function(response){
-    createPostObjects(response)
-    $('#mypostnumber').val('')
-    $('#mypostnumber').html(posts.length - restPosts.length + " posts")
-    $('#theirnumber').html(posts.length - myPosts.length + " posts")
-    $('.w3-container').fadeOut();
-
-  });
 }
 
 
