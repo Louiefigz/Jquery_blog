@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       end
     end
 
-  
+
     def new
 
       @post = Post.new
@@ -82,10 +82,13 @@ class PostsController < ApplicationController
 
     def destroy
       @post.destroy
+      flash[:notice] = "Post successfully Deleted"
       respond_to do |format|
         format.html { redirect_to posts_url }
-        format.json { head :no_content }
-      end
+          format.json do
+            render json: flash
+          end
+        end
     end
 
     def create_tag

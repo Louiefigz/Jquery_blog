@@ -6,6 +6,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <!-- Bootstrap Core CSS -->
     <!-- <link href="./assets/stylesheets/bootstrap.min.css" rel="stylesheet"> -->
 
@@ -17,9 +18,13 @@
   </head>
 
   <body>
-    <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, id: "flash_#{name}" %>
-  <% end %>
+    <div class="w3-container w3-green">
+      <% flash.each do |name, msg| %>
+          <p><%= content_tag :div, msg, id: "flash_#{name}" %></p>
+      <% end %>
+    </div>
+
+
     <%= yield %>
   </body>
 </html>
