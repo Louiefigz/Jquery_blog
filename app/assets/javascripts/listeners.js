@@ -183,6 +183,4 @@ function attachListeners(){
       });
       e.preventDefault()
     });
-
-
   };
