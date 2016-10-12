@@ -6,6 +6,7 @@ var posts= [];
 var myPosts=[];
 var restPosts=[];
 
+
 function reloadPost(path){
   $.getJSON(path).done(function(response){
 
@@ -30,7 +31,7 @@ var createPostObjects = function(response) {
   restPosts =[]
 
   response.posts.forEach(function(post) {
-  
+
     posts.push(new Post(post.id, post.name, post.content, post.user.id, post.current_user_id))
   })
 
@@ -107,16 +108,14 @@ function showMyPosts(){
 }
 
 function getAllPosts(){
-$.getJSON(path).done(function(response){
+  $.getJSON(path).done(function(response){
+    createPostObjects(response)
+    $('#mypostnumber').val('')
+    $('#mypostnumber').html(posts.length - restPosts.length + " posts")
+    $('#theirnumber').html(posts.length - myPosts.length + " posts")
+    $('.w3-container').fadeOut();
 
-  createPostObjects(response)
-
-  // showPosts(posts);
-  $('#mypostnumber').val('')
-  $('#mypostnumber').html(posts.length - restPosts.length + " posts")
-  $('#theirnumber').html(posts.length - myPosts.length + " posts")
-
-});
+  });
 }
 
 
