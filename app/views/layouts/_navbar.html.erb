@@ -4,6 +4,9 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/posts">Home</a>
         </div>
+          <div class="navbar-brand" id="float-right">
+            <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          </div>    
     </div>
     <!-- /.container -->
 </nav>
