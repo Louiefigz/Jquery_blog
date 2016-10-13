@@ -10,7 +10,8 @@ function appendTag(data){
           $('#tags').append(showTag(tag))
           $('#new-tag').val('');
           deleteTag()
-          $('#numberoftags').html($('#tags li').length)
+
+          $('#numberoftags').html(data.post.tags.length);
   }
 }
 
@@ -60,7 +61,7 @@ function deleteTag(){
             tag_id: $(this).attr("data-tag-id")
           }
         }).success(function(data){
-          debugger;
+          $('#numberoftags').html(data.posts.length)
         })
     })
 }

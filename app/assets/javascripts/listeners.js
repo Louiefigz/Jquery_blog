@@ -50,12 +50,10 @@ function attachListeners(){
         name: $('#new-tag').val()
       }
     }).success(function(data){
-
       appendTag(data);
       $('.w3-container.w3-green').fadeOut();
     }).error(function(data){
       $('.w3-container.w3-green').append('<p>' + data.responseText + '</p>');
-      //
 
     });
   });

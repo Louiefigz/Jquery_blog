@@ -80,9 +80,9 @@ class PostsController < ApplicationController
        posttag.destroy
        post = Post.find(params[:id])
        tags = post.tags
-       binding.pry
+      #  binding.pry
        respond_to do |format|
-         render json: tags
+         format.json {render json: tags}
        end
 
 
@@ -105,7 +105,10 @@ class PostsController < ApplicationController
         post = Post.find(params[:id])
           if !post.tags.include?(tag)
             post.tags << tag
-            render json: post
+            respond_to do |format|
+              format.json {render json: post}
+              
+            end
           end
       else
         render status: 404, plain: 'Must have a name!'
