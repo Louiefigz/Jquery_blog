@@ -36,7 +36,6 @@ function reloadPost(path){
     // deleteTag()
     $('#new-post-form').show();
 
-    // posts = [];
   });
 }
 
@@ -71,9 +70,9 @@ Post.prototype.my_post = function(){
      restPosts.push(this);
    }
  }
+// END OF JAVASCRIPT OBJECT FUNCTIONS
 
-
-
+//ALL OTHER POSTS - JAVASCRIPT OBJECT
 function showRestPosts(){
   var dom = "";
   restPosts.forEach(function(post) {
@@ -84,6 +83,7 @@ function showRestPosts(){
 
 }
 
+//ONLY MY POSTS - JAVASCRIPT OBJECT
 function showMyPosts(){
   var dom = "";
   myPosts.forEach(function(post) {
@@ -94,31 +94,29 @@ function showMyPosts(){
   $("#myposts").html(dom);
 }
 
-
+// SHOWING ALL POSTS
 var showPosts = function(posts) {
-
   var dom = "";
     posts.forEach(function(post) {
       dom += (showPost(post, post.current_user_id));
-    })
-
+    });
   $("#showPosts").html(dom);
 }
 
+//SYNTAX FOR RETURNING ONE POST
 function showPost(post, current_user_id) {
   var content = post.content.slice(0, 200);
   var post_td =
-  '<h2>' +
-      '<a href="/posts/'+post.id+' " >' + post.name + '</a>' +
-  '</h2>' +
-  '<p>' + '<span class="glyphicon glyphicon-time">' + '</span>' + 'Posted on August 28, 2013 at 10:45 PM' + '</p>' +
-  '<hr>' +
-  '<img class="img-responsive" src="http://placehold.it/900x300" alt="">' +
-  '<hr>' +
-  '<p>' + content + '</p>' +
-  '<a class="btn btn-primary" href="/posts/'+post.id+' ">' + "Read More" +  '<span class="glyphicon glyphicon-chevron-right">' + '</span>' + '</a>' +
-
-  '<hr>';
+    '<h2>' +
+        '<a href="/posts/'+post.id+' " >' + post.name + '</a>' +
+    '</h2>' +
+      '<p>' + '<span class="glyphicon glyphicon-time">' + '</span>' + 'Posted on August 28, 2013 at 10:45 PM' + '</p>' +
+    '<hr>' +
+      '<img class="img-responsive" src="http://placehold.it/900x300" alt="">' +
+    '<hr>' +
+      '<p>' + content + '</p>' +
+      '<a class="btn btn-primary" href="/posts/'+post.id+' ">' + "Read More" +  '<span class="glyphicon glyphicon-chevron-right">' + '</span>' + '</a>' +
+    '<hr>';
 
     post_td += '</tr>' + '</table>' + '<br>';
 

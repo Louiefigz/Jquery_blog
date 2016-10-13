@@ -1,18 +1,15 @@
 
-// Function below checks to see if we are on a shwo page and if so... we are going to display the following information.
-// This may not be a great way to return a show page if I plan on building this out to have many other show pages.
 
 
-if (path.split('/').slice(-1) == "edit"){
-  var path = path.split('/').slice(0, -1).join('/')
-}
-
+// This is set to make this ajax request if there is a number at the end of url.//
+// If there is a number after posts, it suggests that it is a show page.//
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] !== "" ){
   $.getJSON(path).done(function(response){
     showPagePost(response.post);
       if (response.post.user.id !== response.post.current_user_id){
         $('.editPage').hide();
       }
+      //For the edit form, populating the fields with content.
     $('.editNameForm').find("input[type='text']").attr("value", response.post.name);
     $('#edit-content').val(response.post.content);
   });
