@@ -50,17 +50,19 @@ function tagObject(tag){
 
 function deleteTag(){
   $(".delete_class").click(function(e){
-  $('#numberoftags').html(tags.length -1);
+    $('#numberoftags').html(tags.length -1);
     var id = $(this).attr('data-tag-id');
-  $('#listed-tag-'+id ).hide();
-    $.ajax({
-      url: path + '/delete_tag',
-      method: "DELETE",
-      data:{
-        tag_id: $(this).attr("data-tag-id")
-      }
+      $('#listed-tag-'+id ).hide();
+        $.ajax({
+          url: path + '/delete_tag',
+          method: "DELETE",
+          data:{
+            tag_id: $(this).attr("data-tag-id")
+          }
+        }).success(function(data){
+          debugger;
+        })
     })
-  })
 }
 
 

@@ -78,6 +78,14 @@ class PostsController < ApplicationController
 
        posttag = PostTag.find_by(tag_id: params[:tag_id].to_i, post_id: params[:id].to_i)
        posttag.destroy
+       post = Post.find(params[:id])
+       tags = post.tags
+       binding.pry
+       respond_to do |format|
+         render json: tags
+       end
+
+
     end
 
     def destroy

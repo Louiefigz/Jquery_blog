@@ -14,7 +14,7 @@ $(function(){
 // This loads the posts for the index page //
   getAllPosts()
 //Show page tags
-  jsonTags()
+
 
 })
 
@@ -52,8 +52,11 @@ function attachListeners(){
     }).success(function(data){
 
       appendTag(data);
+      $('.w3-container.w3-green').fadeOut();
     }).error(function(data){
-      // debugger;
+      $('.w3-container.w3-green').append('<p>' + data.responseText + '</p>');
+      //
+
     });
   });
 

@@ -6,6 +6,7 @@
 if ( path.includes("/posts") && path.split('/')[path.split('/').length-1] !== "" ){
   $.getJSON(path).done(function(response){
     showPagePost(response.post);
+    jsonTags();
       if (response.post.user.id !== response.post.current_user_id){
         $('.editPage').hide();
       }
@@ -99,20 +100,20 @@ var showComment = function(comment){
       // comment_td+= showReply(comment);
        comment_td += showReplies(comment.replies);
        comment_td +=
-       '<br>' +
-         '<table>' +
-             '<tr>' +
-               '<td>' +
-                 '<form id="createCommentReplyForm">'+
-                   '<input type="text" placeholder="Comment Reply" class="new-reply" data-commentId="' + comment.id + '"  required>' +
-                   '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
-                   '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
-                   '<input type="submit">' +
-                 '</form>' +
-               '</td>' +
-             '</tr>' +
-           '</table>' +
-          '</div>' + '<br>';
+         '<br>' +
+           '<table>' +
+               '<tr>' +
+                 '<td>' +
+                   '<form id="createCommentReplyForm">'+
+                     '<input type="text" placeholder="Comment Reply" class="new-reply" data-commentId="' + comment.id + '"  required>' +
+                     '<input type="hidden" value="'+comment.id+'" id="parent_id">' +
+                     '<input type="hidden" value="'+comment.post_id+'" id="post_id">' +
+                     '<input type="submit">' +
+                   '</form>' +
+                 '</td>' +
+               '</tr>' +
+             '</table>' +
+            '</div>' + '<br>';
 
   return comment_td;
 }
